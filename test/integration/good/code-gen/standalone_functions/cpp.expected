@@ -167,8 +167,8 @@ return int_array_fun(a, pstream__);
 };
 
 template <typename T0__>
-Eigen::Matrix<stan::promote_args_t<T0__>, -1, 1>
-my_vector_mul_by_5(const Eigen::Matrix<T0__, -1, 1>& x,
+std::conditional_t<stan::is_var<stan::promote_args_t<T0__>>::value, stan::arena_t<Eigen::Matrix<stan::promote_args_t<T0__>, -1, 1>>, Eigen::Matrix<stan::promote_args_t<T0__>, -1, 1>>
+my_vector_mul_by_5(const std::conditional_t<stan::is_var<T0__>::value, stan::arena_t<Eigen::Matrix<T0__, -1, 1>>, Eigen::Matrix<T0__, -1, 1>>& x,
                    std::ostream* pstream__) {
   using local_scalar_t__ = stan::promote_args_t<T0__>;
   const static bool propto__ = true;
@@ -179,8 +179,9 @@ my_vector_mul_by_5(const Eigen::Matrix<T0__, -1, 1>& x,
   try {
     current_statement__ = 7;
     validate_non_negative_index("result", "num_elements(x)", num_elements(x));
-    Eigen::Matrix<local_scalar_t__, -1, 1> result;
-    result = Eigen::Matrix<local_scalar_t__, -1, 1>(num_elements(x));
+    std::conditional_t<stan::is_var<local_scalar_t__>::value, stan::arena_t<Eigen::Matrix<local_scalar_t__, -1, 1>>, Eigen::Matrix<local_scalar_t__, -1, 1>> result;
+    result = std::conditional_t<stan::is_var<local_scalar_t__>::value, stan::arena_t<Eigen::Matrix<local_scalar_t__, -1, 1>>, Eigen::Matrix<local_scalar_t__, -1, 1>>(
+      num_elements(x));
     stan::math::fill(result, DUMMY_VAR__);
     
     current_statement__ = 8;
@@ -198,8 +199,9 @@ my_vector_mul_by_5(const Eigen::Matrix<T0__, -1, 1>& x,
 
 struct my_vector_mul_by_5_functor__ {
 template <typename T0__>
-Eigen::Matrix<stan::promote_args_t<T0__>, -1, 1>
-operator()(const Eigen::Matrix<T0__, -1, 1>& x, std::ostream* pstream__)  const 
+std::conditional_t<stan::is_var<stan::promote_args_t<T0__>>::value, stan::arena_t<Eigen::Matrix<stan::promote_args_t<T0__>, -1, 1>>, Eigen::Matrix<stan::promote_args_t<T0__>, -1, 1>>
+operator()(const std::conditional_t<stan::is_var<T0__>::value, stan::arena_t<Eigen::Matrix<T0__, -1, 1>>, Eigen::Matrix<T0__, -1, 1>>& x,
+           std::ostream* pstream__)  const 
 {
 return my_vector_mul_by_5(x, pstream__);
 }
@@ -377,7 +379,7 @@ auto int_array_fun(const std::vector<int>& a,
 
 
 // [[stan::function]]
-auto my_vector_mul_by_5(const Eigen::Matrix<double, -1, 1>& x,
+auto my_vector_mul_by_5(const std::conditional_t<stan::is_var<double>::value, stan::arena_t<Eigen::Matrix<double, -1, 1>>, Eigen::Matrix<double, -1, 1>>& x,
                         std::ostream* pstream__ = nullptr)  
 {
  return basic_model_namespace::my_vector_mul_by_5(x, pstream__);
@@ -498,8 +500,9 @@ static const std::vector<string> locations_array__ = {" (found before start of p
 
 
 template <typename T0__>
-Eigen::Matrix<stan::promote_args_t<T0__>, -1, 1>
-integrand(const Eigen::Matrix<T0__, -1, 1>& x, std::ostream* pstream__) {
+std::conditional_t<stan::is_var<stan::promote_args_t<T0__>>::value, stan::arena_t<Eigen::Matrix<stan::promote_args_t<T0__>, -1, 1>>, Eigen::Matrix<stan::promote_args_t<T0__>, -1, 1>>
+integrand(const std::conditional_t<stan::is_var<T0__>::value, stan::arena_t<Eigen::Matrix<T0__, -1, 1>>, Eigen::Matrix<T0__, -1, 1>>& x,
+          std::ostream* pstream__) {
   using local_scalar_t__ = stan::promote_args_t<T0__>;
   const static bool propto__ = true;
   (void) propto__;
@@ -519,8 +522,9 @@ integrand(const Eigen::Matrix<T0__, -1, 1>& x, std::ostream* pstream__) {
 
 struct integrand_functor__ {
 template <typename T0__>
-Eigen::Matrix<stan::promote_args_t<T0__>, -1, 1>
-operator()(const Eigen::Matrix<T0__, -1, 1>& x, std::ostream* pstream__)  const 
+std::conditional_t<stan::is_var<stan::promote_args_t<T0__>>::value, stan::arena_t<Eigen::Matrix<stan::promote_args_t<T0__>, -1, 1>>, Eigen::Matrix<stan::promote_args_t<T0__>, -1, 1>>
+operator()(const std::conditional_t<stan::is_var<T0__>::value, stan::arena_t<Eigen::Matrix<T0__, -1, 1>>, Eigen::Matrix<T0__, -1, 1>>& x,
+           std::ostream* pstream__)  const 
 {
 return integrand(x, pstream__);
 }
@@ -610,7 +614,7 @@ return ode_integrate(pstream__);
 }
 
 // [[stan::function]]
-auto integrand(const Eigen::Matrix<double, -1, 1>& x,
+auto integrand(const std::conditional_t<stan::is_var<double>::value, stan::arena_t<Eigen::Matrix<double, -1, 1>>, Eigen::Matrix<double, -1, 1>>& x,
                std::ostream* pstream__ = nullptr)  
 {
  return integrate_model_namespace::integrand(x, pstream__);

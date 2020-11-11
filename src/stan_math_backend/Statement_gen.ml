@@ -40,7 +40,7 @@ let%expect_test "set size mat array" =
   |> print_endline ;
   [%expect
     {|
-      d = std::vector<std::vector<Eigen::Matrix<double, -1, -1>>>(5, std::vector<Eigen::Matrix<double, -1, -1>>(4, Eigen::Matrix<double, -1, -1>(2, 3)));
+      d = std::vector<std::vector<std::conditional_t<stan::is_var<double>::value, stan::arena_t<Eigen::Matrix<double, -1, -1>>, Eigen::Matrix<double, -1, -1>>>>(5, std::vector<std::conditional_t<stan::is_var<double>::value, stan::arena_t<Eigen::Matrix<double, -1, -1>>, Eigen::Matrix<double, -1, -1>>>(4, std::conditional_t<stan::is_var<double>::value, stan::arena_t<Eigen::Matrix<double, -1, -1>>, Eigen::Matrix<double, -1, -1>>(2, 3)));
       stan::math::fill(d, std::numeric_limits<double>::quiet_NaN()); |}]
 
 (** [pp_for_loop ppf (loopvar, lower, upper, pp_body, body)] tries to

@@ -26,8 +26,9 @@ let%expect_test "udf" =
     {|
     template <typename T1__>
     void
-    sars(const Eigen::Matrix<double, -1, -1>& x,
-         const Eigen::Matrix<T1__, 1, -1>& y, std::ostream* pstream__) {
+    sars(const std::conditional_t<stan::is_var<double>::value, stan::arena_t<Eigen::Matrix<double, -1, -1>>, Eigen::Matrix<double, -1, -1>>& x,
+         const std::conditional_t<stan::is_var<T1__>::value, stan::arena_t<Eigen::Matrix<T1__, 1, -1>>, Eigen::Matrix<T1__, 1, -1>>& y,
+         std::ostream* pstream__) {
       using local_scalar_t__ = stan::promote_args_t<T1__>;
       const static bool propto__ = true;
       (void) propto__;
@@ -47,8 +48,9 @@ let%expect_test "udf" =
     struct sars_functor__ {
     template <typename T1__>
     void
-    operator()(const Eigen::Matrix<double, -1, -1>& x,
-               const Eigen::Matrix<T1__, 1, -1>& y, std::ostream* pstream__)  const
+    operator()(const std::conditional_t<stan::is_var<double>::value, stan::arena_t<Eigen::Matrix<double, -1, -1>>, Eigen::Matrix<double, -1, -1>>& x,
+               const std::conditional_t<stan::is_var<T1__>::value, stan::arena_t<Eigen::Matrix<T1__, 1, -1>>, Eigen::Matrix<T1__, 1, -1>>& y,
+               std::ostream* pstream__)  const
     {
     return sars(x, y, pstream__);
     }
