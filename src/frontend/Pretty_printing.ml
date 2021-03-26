@@ -215,8 +215,11 @@ and pp_transformed_type ppf (pst, trans) =
         Fmt.const
           (fun ppf -> Fmt.pf ppf "[%a, %a]" pp_expression e1 pp_expression)
           e2
-    | Sized (SArray _) | Unsized _ | Sized Middle.SizedType.SInt | Sized SReal | Sized SComplex
-      ->
+    | Sized (SArray _)
+     |Unsized _
+     |Sized Middle.SizedType.SInt
+     |Sized SReal
+     |Sized SComplex ->
         Fmt.nop
   in
   let cov_sizes_fmt =

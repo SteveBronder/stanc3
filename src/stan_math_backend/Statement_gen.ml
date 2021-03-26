@@ -60,9 +60,9 @@ let pp_for_loop ppf (loopvar, lower, upper, pp_body, body) =
   pf ppf " %a@]" pp_body body
 
 let rec integer_el_type = function
-| SizedType.SInt -> true
-| SArray (st, _) -> integer_el_type st
-| _ -> false
+  | SizedType.SInt -> true
+  | SArray (st, _) -> integer_el_type st
+  | _ -> false
 
 let pp_decl ppf (vident, ut, adtype) =
   let pp_type =

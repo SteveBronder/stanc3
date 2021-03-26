@@ -25,16 +25,16 @@ let check_of_compatible_return_type rt1 srt2 =
      |Void, Complete Void
      |Void, AnyReturnType ->
         true
-     | _, AnyReturnType -> true
-     | _, Complete (ret_type) ->
-      (match (rt1, ret_type) with
+    | _, AnyReturnType -> true
+    | _, Complete ret_type -> (
+      match (rt1, ret_type) with
       | ReturnType UReal, ReturnType UInt -> true
       | ReturnType UComplex, ReturnType UInt -> true
       | ReturnType UComplex, ReturnType UComplex -> true
       | ReturnType UComplex, ReturnType UReal -> true
       | ReturnType rt1, ReturnType rt2 -> rt1 = rt2
-      | _ -> false)
-     | _ -> false)
+      | _ -> false )
+    | _ -> false)
 
 (** Origin blocks, to keep track of where variables are declared *)
 type originblock =
@@ -201,8 +201,8 @@ let reserved_keywords =
   ; "try"; "typedef"; "typeid"; "typename"; "union"; "unsigned"; "using"
   ; "virtual"; "void"; "volatile"; "wchar_t"; "while"; "xor"; "xor_eq"
   ; "functions"; "data"; "parameters"; "model"; "return"; "if"; "else"; "while"
-  ; "for"; "in"; "break"; "continue"; "void"; "int"; "real"; "complex"; "vector"
-  ; "row_vector"; "matrix"; "ordered"; "positive_ordered"; "simplex"
+  ; "for"; "in"; "break"; "continue"; "void"; "int"; "real"; "complex"
+  ; "vector"; "row_vector"; "matrix"; "ordered"; "positive_ordered"; "simplex"
   ; "unit_vector"; "cholesky_factor_corr"; "cholesky_factor_cov"; "corr_matrix"
   ; "cov_matrix"; "print"; "reject"; "target"; "get_lp"; "profile" ]
 
@@ -767,13 +767,11 @@ and semantic_check_expression cf ({emeta; expr} : Ast.untyped_expression) :
       mk_typed_expression ~expr:(RealNumeral s) ~ad_level:DataOnly ~type_:UReal
         ~loc:emeta.loc
       |> Validate.ok
-
-      | ComplexNumeral s ->
-      mk_typed_expression ~expr:(ComplexNumeral s) ~ad_level:DataOnly ~type_:UComplex
-        ~loc:emeta.loc
+  | ComplexNumeral s ->
+      mk_typed_expression ~expr:(ComplexNumeral s) ~ad_level:DataOnly
+        ~type_:UComplex ~loc:emeta.loc
       |> Validate.ok
-
-      | FunApp (_, id, es) ->
+  | FunApp (_, id, es) ->
       semantic_check_funapp ~is_cond_dist:false id es cf emeta
   | CondDistApp (_, id, es) ->
       semantic_check_funapp ~is_cond_dist:true id es cf emeta
@@ -1712,13 +1710,15 @@ and semantic_check_fundef_return_tys ~loc id return_type body =
       Symbol_table.check_is_unassigned vm id.name
       || check_of_compatible_return_type return_type body.smeta.return_type
     then ok ()
-    else 
-    let body_ret = match body.smeta.return_type with
-    | NoReturnType -> UnsizedType.Void
-    | AnyReturnType -> UnsizedType.Void
-    | Incomplete (ret) -> ret
-    | Complete (ret) -> ret in
-    error @@ Semantic_error.mismatched_return_types loc return_type body_ret)
+    else
+      let body_ret =
+        match body.smeta.return_type with
+        | NoReturnType -> UnsizedType.Void
+        | AnyReturnType -> UnsizedType.Void
+        | Incomplete ret -> ret
+        | Complete ret -> ret
+      in
+      error @@ Semantic_error.mismatched_return_types loc return_type body_ret)
 
 and semantic_check_fundef ~loc ~cf return_ty id args body =
   let uargs =
@@ -1786,7 +1786,8 @@ and semantic_check_fundef ~loc ~cf return_ty id args body =
       ; in_returning_fun_def= urt <> Void }
     in
     let body' = semantic_check_statement context body in
-    body' >>= fun ub ->
+    body'
+    >>= fun ub ->
     semantic_check_fundef_return_tys ~loc id urt ub
     |> map ~f:(fun _ ->
            (* WARNING: SIDE EFFECTING *)

@@ -320,7 +320,8 @@ module Helpers = struct
 *)
   let rec for_eigen st bodyfn var smeta =
     match st with
-    | SizedType.SInt | SReal | SComplex | SVector _ | SRowVector _ | SMatrix _ ->
+    | SizedType.SInt | SReal | SComplex | SVector _ | SRowVector _ | SMatrix _
+      ->
         bodyfn var
     | SArray (t, d) -> mkfor d (fun e -> for_eigen t bodyfn e smeta) var smeta
 

@@ -28,7 +28,9 @@ let is_stan_math f = ends_with "__" f || starts_with "stan::math::" f
 
 (* retun true if the tpe of the expression is integer or real *)
 let is_scalar e =
-  match Expr.Typed.type_of e with UInt | UReal | UComplex  -> true | _ -> false
+  match Expr.Typed.type_of e with
+  | UInt | UReal | UComplex -> true
+  | _ -> false
 
 let is_matrix e = Expr.Typed.type_of e = UMatrix
 let is_row_vector e = Expr.Typed.type_of e = URowVector

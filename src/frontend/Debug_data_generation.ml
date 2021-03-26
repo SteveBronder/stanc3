@@ -80,7 +80,7 @@ let wrap_real r =
 let wrap_complex r =
   { expr= RealNumeral (Float.to_string r)
   ; emeta= {loc= Location_span.empty; ad_level= DataOnly; type_= UComplex} }
-  
+
 let wrap_row_vector l =
   { expr= RowVectorExpr l
   ; emeta= {loc= Location_span.empty; ad_level= DataOnly; type_= URowVector} }
