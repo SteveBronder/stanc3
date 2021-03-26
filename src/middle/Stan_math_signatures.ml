@@ -527,7 +527,7 @@ let add_binary_vec_int_real name =
             , ReturnType (bare_array_type (i, j))
             , [UInt; bare_array_type (i, j)] ) )
         (List.range 0 8) )
-    [UnsizedType.UArray UReal; UVector; URowVector; UMatrix] ;
+    [UnsizedType.UArray UReal; UnsizedType.UArray UComplex; UVector; URowVector; UMatrix] ;
   List.iter
     ~f:(fun i ->
       List.iter
@@ -537,7 +537,7 @@ let add_binary_vec_int_real name =
             , ReturnType (bare_array_type (i, j))
             , [bare_array_type (UInt, j + 1); bare_array_type (i, j)] ) )
         (List.range 0 8) )
-    [UnsizedType.UArray UReal; UVector; URowVector] ;
+    [UnsizedType.UArray UReal; UnsizedType.UArray UComplex; UVector; URowVector] ;
   List.iter
     ~f:(fun i ->
       add_unqualified
@@ -563,7 +563,7 @@ let add_binary_vec_real_int name =
             , ReturnType (bare_array_type (i, j))
             , [bare_array_type (i, j); UInt] ) )
         (List.range 0 8) )
-    [UnsizedType.UArray UReal; UVector; URowVector; UMatrix] ;
+    [UnsizedType.UArray UReal; UnsizedType.UArray UComplex; UVector; URowVector; UMatrix] ;
   List.iter
     ~f:(fun i ->
       List.iter
@@ -573,7 +573,7 @@ let add_binary_vec_real_int name =
             , ReturnType (bare_array_type (i, j))
             , [bare_array_type (i, j); bare_array_type (UInt, j + 1)] ) )
         (List.range 0 8) )
-    [UnsizedType.UArray UReal; UVector; URowVector] ;
+    [UnsizedType.UArray UReal; UnsizedType.UArray UComplex; UVector; URowVector] ;
   List.iter
     ~f:(fun i ->
       add_unqualified
@@ -587,6 +587,13 @@ let add_binary_vec_real_int name =
         ( name
         , ReturnType (bare_array_type (UReal, i))
         , [UReal; bare_array_type (UInt, i)] ) )
+    (List.range 0 8);
+    List.iter
+    ~f:(fun i ->
+      add_unqualified
+        ( name
+        , ReturnType (bare_array_type (UComplex, i))
+        , [UComplex; bare_array_type (UInt, i)] ) )
     (List.range 0 8)
 
 let add_binary_vec_int_int name =
@@ -624,6 +631,7 @@ let () =
       Hashtbl.add_multi stan_math_signatures ~key ~data:(rt, args) ) ;
   add_unqualified ("abs", ReturnType UInt, [UInt]) ;
   add_unqualified ("abs", ReturnType UReal, [UReal]) ;
+  add_unqualified ("abs", ReturnType UComplex, [UComplex]) ;
   List.iter
     ~f:(fun x -> add_unqualified ("add", ReturnType x, [x; x]))
     bare_types ;
@@ -692,6 +700,7 @@ let () =
   add_unqualified ("assign_multiply", Void, [UMatrix; UMatrix]) ;
   add_unqualified ("assign_multiply", Void, [UMatrix; UReal]) ;
   add_unqualified ("assign_multiply", Void, [UReal; UReal]) ;
+  add_unqualified ("assign_multiply", Void, [UComplex; UComplex]) ;
   add_unqualified ("assign_multiply", Void, [URowVector; UReal]) ;
   add_unqualified ("assign_multiply", Void, [UMatrix; UInt]) ;
   add_unqualified ("assign_multiply", Void, [UReal; UInt]) ;
@@ -887,6 +896,7 @@ let () =
   add_unqualified ("distance", ReturnType UReal, [URowVector; UVector]) ;
   add_unqualified ("divide", ReturnType UInt, [UInt; UInt]) ;
   add_unqualified ("divide", ReturnType UReal, [UReal; UReal]) ;
+  add_unqualified ("divide", ReturnType UComplex, [UComplex; UComplex]) ;
   add_unqualified ("divide", ReturnType UVector, [UVector; UReal]) ;
   add_unqualified ("divide", ReturnType URowVector, [URowVector; UReal]) ;
   add_unqualified ("divide", ReturnType UMatrix, [UMatrix; UReal]) ;
@@ -1276,6 +1286,7 @@ let () =
   add_binary_vec "log_modified_bessel_first_kind" ;
   add_binary_vec "log_rising_factorial" ;
   add_unqualified ("log_softmax", ReturnType UVector, [UVector]) ;
+  add_unqualified ("log_sum_exp", ReturnType UComplex, [UArray UComplex]) ;
   add_unqualified ("log_sum_exp", ReturnType UReal, [UArray UReal]) ;
   add_unqualified ("log_sum_exp", ReturnType UReal, [UVector]) ;
   add_unqualified ("log_sum_exp", ReturnType UReal, [URowVector]) ;
@@ -1313,6 +1324,7 @@ let () =
     ("matrix_exp_multiply", ReturnType UMatrix, [UMatrix; UMatrix]) ;
   add_unqualified ("matrix_power", ReturnType UMatrix, [UMatrix; UInt]) ;
   add_unqualified ("max", ReturnType UInt, [UArray UInt]) ;
+  add_unqualified ("max", ReturnType UComplex, [UArray UComplex]) ;
   add_unqualified ("max", ReturnType UReal, [UArray UReal]) ;
   add_unqualified ("max", ReturnType UReal, [UVector]) ;
   add_unqualified ("max", ReturnType UReal, [URowVector]) ;
@@ -1336,16 +1348,19 @@ let () =
     ("mdivide_right_tri_low", ReturnType URowVector, [URowVector; UMatrix]) ;
   add_unqualified
     ("mdivide_right_tri_low", ReturnType UMatrix, [UMatrix; UMatrix]) ;
-  add_unqualified ("mean", ReturnType UReal, [UArray UReal]) ;
+    add_unqualified ("mean", ReturnType UComplex, [UArray UComplex]) ;
+    add_unqualified ("mean", ReturnType UReal, [UArray UReal]) ;
   add_unqualified ("mean", ReturnType UReal, [UVector]) ;
   add_unqualified ("mean", ReturnType UReal, [URowVector]) ;
   add_unqualified ("mean", ReturnType UReal, [UMatrix]) ;
+  add_unqualified ("min", ReturnType UComplex, [UArray UComplex]) ;
   add_unqualified ("min", ReturnType UInt, [UArray UInt]) ;
   add_unqualified ("min", ReturnType UReal, [UArray UReal]) ;
   add_unqualified ("min", ReturnType UReal, [UVector]) ;
   add_unqualified ("min", ReturnType UReal, [URowVector]) ;
   add_unqualified ("min", ReturnType UReal, [UMatrix]) ;
   add_unqualified ("min", ReturnType UInt, [UInt; UInt]) ;
+  add_unqualified ("minus", ReturnType UComplex, [UComplex]) ;
   add_unqualified ("minus", ReturnType UInt, [UInt]) ;
   add_unqualified ("minus", ReturnType UReal, [UReal]) ;
   add_unqualified ("minus", ReturnType UVector, [UVector]) ;
@@ -1403,6 +1418,9 @@ let () =
   add_unqualified ("multinomial_lpmf", ReturnType UReal, [UArray UInt; UVector]) ;
   add_unqualified ("multinomial_rng", ReturnType (UArray UInt), [UVector; UInt]) ;
   add_unqualified ("multiply", ReturnType UInt, [UInt; UInt]) ;
+  add_unqualified ("multiply", ReturnType UComplex, [UComplex; UComplex]) ;
+  add_unqualified ("multiply", ReturnType UComplex, [UReal; UComplex]) ;
+  add_unqualified ("multiply", ReturnType UComplex, [UComplex; UReal]) ;
   add_unqualified ("multiply", ReturnType UReal, [UReal; UReal]) ;
   add_unqualified ("multiply", ReturnType UVector, [UVector; UReal]) ;
   add_unqualified ("multiply", ReturnType URowVector, [URowVector; UReal]) ;
@@ -1541,6 +1559,7 @@ let () =
   add_nullary "pi" ;
   add_unqualified ("plus", ReturnType UInt, [UInt]) ;
   add_unqualified ("plus", ReturnType UReal, [UReal]) ;
+  add_unqualified ("plus", ReturnType UComplex, [UComplex]) ;
   add_unqualified ("plus", ReturnType UVector, [UVector]) ;
   add_unqualified ("plus", ReturnType URowVector, [URowVector]) ;
   add_unqualified ("plus", ReturnType UMatrix, [UMatrix]) ;
@@ -1718,6 +1737,7 @@ let () =
   add_unqualified ("subtract", ReturnType URowVector, [UReal; URowVector]) ;
   add_unqualified ("subtract", ReturnType UMatrix, [UReal; UMatrix]) ;
   add_unqualified ("sum", ReturnType UInt, [UArray UInt]) ;
+  add_unqualified ("sum", ReturnType UComplex, [UArray UComplex]) ;
   add_unqualified ("sum", ReturnType UReal, [UArray UReal]) ;
   add_unqualified ("sum", ReturnType UReal, [UVector]) ;
   add_unqualified ("sum", ReturnType UReal, [URowVector]) ;

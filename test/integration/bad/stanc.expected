@@ -1456,6 +1456,7 @@ Ill-typed arguments supplied to infix operator /. Available signatures:
 
 (int, int) => int
 (real, real) => real
+(complex, complex) => complex
 (vector, real) => vector
 (row_vector, real) => row_vector
 (matrix, real) => matrix
@@ -1476,6 +1477,7 @@ Ill-typed arguments supplied to infix operator /. Available signatures:
 
 (int, int) => int
 (real, real) => real
+(complex, complex) => complex
 (vector, real) => vector
 (row_vector, real) => row_vector
 (matrix, real) => matrix
@@ -1617,6 +1619,7 @@ Semantic error in 'op_minus_bad.stan', line 7, column 6 to column 8:
 Ill-typed arguments supplied to prefix operator -. Available signatures: 
 (int) => int
 (real) => real
+(complex) => complex
 (vector) => vector
 (row_vector) => row_vector
 (matrix) => matrix
@@ -1648,6 +1651,9 @@ Ill-typed arguments supplied to infix operator *. Available signatures:
 (int, int) => int
 (real, real) => real
 (row_vector, vector) => real
+(real, complex) => complex
+(complex, real) => complex
+(complex, complex) => complex
 (real, vector) => vector
 (vector, real) => vector
 (matrix, vector) => vector
