@@ -766,6 +766,7 @@ Semantic error in 'err-minus-types.stan', line 4, column 6 to column 11:
 Ill-typed arguments supplied to infix operator -. Available signatures: 
 (int, int) => int
 (real, real) => real
+(complex, complex) => complex
 (real, vector) => vector
 (vector, real) => vector
 (vector, vector) => vector
@@ -950,7 +951,7 @@ Semantic error in 'fun-return-type1.stan', line 2, column 2 to column 72:
      3:  }
    -------------------------------------------------
 
-Function bodies must contain a return statement of correct type in every branch.
+Branches of function definition need to have the same return type. Instead, found return types real and array[] int.
   $ ../../../../install/default/bin/stanc fun-return-type2.stan
 Semantic error in 'fun-return-type2.stan', line 2, column 2 to column 72:
    -------------------------------------------------
@@ -960,7 +961,7 @@ Semantic error in 'fun-return-type2.stan', line 2, column 2 to column 72:
      3:  }
    -------------------------------------------------
 
-Function bodies must contain a return statement of correct type in every branch.
+Branches of function definition need to have the same return type. Instead, found return types real and array[] int.
   $ ../../../../install/default/bin/stanc functions-bad0.stan
 Syntax error in 'functions-bad0.stan', line 2, column 11 to column 15, parsing error:
    -------------------------------------------------
@@ -1428,6 +1429,7 @@ Semantic error in 'op_addition_bad.stan', line 7, column 6 to column 11:
 Ill-typed arguments supplied to infix operator +. Available signatures: 
 (int, int) => int
 (real, real) => real
+(complex, complex) => complex
 (real, vector) => vector
 (vector, real) => vector
 (vector, vector) => vector
@@ -1586,6 +1588,7 @@ Semantic error in 'op_logical_negation_bad.stan', line 7, column 6 to column 8:
 Ill-typed arguments supplied to prefix operator !. Available signatures: 
 (int) => int
 (real) => int
+(complex) => int
 Instead supplied argument of incompatible type: array[] int.
   $ ../../../../install/default/bin/stanc op_mdivide_left_bad.stan
 Semantic error in 'op_mdivide_left_bad.stan', line 7, column 6 to column 11:
@@ -1669,6 +1672,7 @@ Semantic error in 'op_subtraction_bad.stan', line 7, column 6 to column 11:
 Ill-typed arguments supplied to infix operator -. Available signatures: 
 (int, int) => int
 (real, real) => real
+(complex, complex) => complex
 (real, vector) => vector
 (vector, real) => vector
 (vector, vector) => vector
@@ -2415,6 +2419,7 @@ Semantic error in 'validate_logical_negate_expr_bad.stan', line 3, column 6 to c
 Ill-typed arguments supplied to prefix operator !. Available signatures: 
 (int) => int
 (real) => int
+(complex) => int
 Instead supplied argument of incompatible type: vector.
   $ ../../../../install/default/bin/stanc validate_modulus_bad.stan
 Semantic error in 'validate_modulus_bad.stan', line 7, column 6 to column 11:

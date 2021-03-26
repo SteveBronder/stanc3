@@ -113,14 +113,14 @@ let data_read smeta (decl_id, st) =
       Expr.Typed.Meta.{var.meta with type_= flat_type}
   in
   match unsized with
-  | UInt | UReal ->
+  | UInt | UReal | UComplex ->
       [ Assignment
           ( (decl_id, unsized, [])
           , { Expr.Fixed.pattern=
                 Indexed (readfnapp decl_var, [Single Expr.Helpers.loop_bottom])
             ; meta= {decl_var.meta with type_= unsized} } )
         |> swrap ]
-  | UArray UInt | UArray UReal ->
+  | UArray UInt | UArray UReal | UArray UComplex ->
       [Assignment ((decl_id, flat_type, []), readfnapp decl_var) |> swrap]
   | UFun _ | UMathLibraryFunction ->
       raise_s [%message "Cannot read a function type."]
@@ -222,7 +222,7 @@ let param_read smeta
     *)
     let rec constrain_get_dims st =
       match st with
-      | SizedType.SInt | SReal -> []
+      | SizedType.SInt | SReal | SComplex -> []
       | SVector d | SRowVector d -> [d]
       | SMatrix (_, dim2) -> [dim2]
       | SArray (t, dim) -> dim :: constrain_get_dims t

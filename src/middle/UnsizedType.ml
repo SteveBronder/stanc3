@@ -4,6 +4,7 @@ open Common.Helpers
 type t =
   | UInt
   | UReal
+  | UComplex
   | UVector
   | URowVector
   | UMatrix
@@ -42,6 +43,7 @@ let rec unwind_array_type = function
 let rec pp ppf = function
   | UInt -> pp_keyword ppf "int"
   | UReal -> pp_keyword ppf "real"
+  | UComplex -> pp_keyword ppf "complex"
   | UVector -> pp_keyword ppf "vector"
   | URowVector -> pp_keyword ppf "row_vector"
   | UMatrix -> pp_keyword ppf "matrix"
@@ -80,6 +82,10 @@ let check_of_same_type_mod_conv name t1 t2 =
   else
     match (t1, t2) with
     | UReal, UInt -> true
+    | UComplex, UInt -> true
+    | UInt, UComplex -> true
+    | UReal, UComplex -> true
+    | UComplex, UReal -> true
     | UFun (l1, rt1), UFun (l2, rt2) ->
         rt1 = rt2
         && List.length l1 = List.length l2
@@ -110,6 +116,7 @@ let check_compatible_arguments_mod_conv name args1 args2 =
 (** Given two types find the minimal type both can convert to *)
 let rec common_type = function
   | UReal, UInt | UInt, UReal -> Some UReal
+  | UComplex, UInt | UInt, UComplex | UReal, UComplex | UComplex, UReal -> Some UComplex
   | UArray t1, UArray t2 ->
       common_type (t1, t2) |> Option.map ~f:(fun t -> UArray t)
   | t1, t2 when t1 = t2 -> Some t1
@@ -117,8 +124,9 @@ let rec common_type = function
 
 (* -- Helpers -- *)
 let is_real_type = function
-  | UReal | UVector | URowVector | UMatrix
+  | UReal | UVector | UComplex | URowVector | UMatrix
    |UArray UReal
+   |UArray UComplex
    |UArray UVector
    |UArray URowVector
    |UArray UMatrix ->
@@ -126,11 +134,11 @@ let is_real_type = function
   | _ -> false
 
 let rec is_autodiffable = function
-  | UReal | UVector | URowVector | UMatrix -> true
+  | UReal | UComplex | UVector | URowVector | UMatrix -> true
   | UArray t -> is_autodiffable t
   | _ -> false
 
-let is_scalar_type = function UReal | UInt -> true | _ -> false
+let is_scalar_type = function UReal | UInt | UComplex -> true | _ -> false
 let is_int_type = function UInt | UArray UInt -> true | _ -> false
 
 let is_eigen_type = function

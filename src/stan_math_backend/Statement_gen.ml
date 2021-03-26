@@ -18,7 +18,7 @@ let pp_profile ppf (pp_body, name, body) =
 let rec contains_eigen = function
   | UnsizedType.UArray t -> contains_eigen t
   | UMatrix | URowVector | UVector -> true
-  | UInt | UReal | UMathLibraryFunction | UFun _ -> false
+  | UInt | UReal | UComplex | UMathLibraryFunction | UFun _ -> false
 
 let pp_set_size ppf (decl_id, st, adtype) =
   (* TODO: generate optimal adtypes for expressions and declarations *)
@@ -33,7 +33,7 @@ let pp_set_size ppf (decl_id, st, adtype) =
     in
     match st with
     | SizedType.SInt -> pf ppf "std::numeric_limits<int>::min()"
-    | SReal -> pf ppf "%s" real_nan
+    | SReal | SComplex -> pf ppf "%s" real_nan
     | SVector d | SRowVector d -> pf ppf "%a(%a)" pp_st st pp_expr d
     | SMatrix (d1, d2) -> pf ppf "%a(%a, %a)" pp_st st pp_expr d1 pp_expr d2
     | SArray (t, d) -> pf ppf "%a(%a, %a)" pp_st st pp_expr d pp_size_ctor t
@@ -60,9 +60,9 @@ let pp_for_loop ppf (loopvar, lower, upper, pp_body, body) =
   pf ppf " %a@]" pp_body body
 
 let rec integer_el_type = function
-  | SizedType.SReal | SVector _ | SMatrix _ | SRowVector _ -> false
-  | SInt -> true
-  | SArray (st, _) -> integer_el_type st
+| SizedType.SInt -> true
+| SArray (st, _) -> integer_el_type st
+| _ -> false
 
 let pp_decl ppf (vident, ut, adtype) =
   let pp_type =

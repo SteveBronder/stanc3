@@ -37,7 +37,7 @@ let rec expand_arg = function
   | DIntAndReals -> expand_arg DVReal @ expand_arg DVInt
   | DVectors -> [UVector; UArray UVector; URowVector; UArray URowVector]
   | DDeepVectorized ->
-      let all_base = [UnsizedType.UInt; UReal; URowVector; UVector; UMatrix] in
+      let all_base = [UnsizedType.UInt; UReal; UComplex; URowVector; UVector; UMatrix] in
       List.(
         concat_map all_base ~f:(fun a ->
             map (range 0 8) ~f:(fun i -> bare_array_type (a, i)) ))
@@ -46,6 +46,7 @@ type fkind = Lpmf | Lpdf | Rng | Cdf | Ccdf | UnaryVectorized
 
 let is_primitive = function
   | UnsizedType.UReal -> true
+  | UnsizedType.UComplex -> true
   | UInt -> true
   | _ -> false
 
@@ -87,6 +88,7 @@ let reduce_sum_allowed_dimensionalities = [1; 2; 3; 4; 5; 6; 7]
 let reduce_sum_slice_types =
   let base_slice_type i =
     [ bare_array_type (UnsizedType.UReal, i)
+    ; bare_array_type (UnsizedType.UComplex, i)
     ; bare_array_type (UnsizedType.UInt, i)
     ; bare_array_type (UnsizedType.UMatrix, i)
     ; bare_array_type (UnsizedType.UVector, i)
@@ -404,15 +406,15 @@ let pretty_print_math_lib_assignmentoperator_sigs op =
   assignmentoperator_to_stan_math_fn op |> Option.map ~f:pretty_print_math_sigs
 
 (* -- Some helper definitions to populate stan_math_signatures -- *)
-let bare_types = [UnsizedType.UInt; UReal; UVector; URowVector; UMatrix]
+let bare_types = [UnsizedType.UInt; UReal; UComplex; UVector; URowVector; UMatrix]
 let bare_types_size = List.length bare_types
-let vector_types = [UnsizedType.UReal; UArray UReal; UVector; URowVector]
+let vector_types = [UnsizedType.UReal; UArray UReal; UComplex; UArray UComplex; UVector; URowVector]
 let vector_types_size = List.length vector_types
-let primitive_types = [UnsizedType.UInt; UReal]
+let primitive_types = [UnsizedType.UInt; UReal; UComplex]
 let primitive_types_size = List.length primitive_types
 
 let all_vector_types =
-  [UnsizedType.UReal; UArray UReal; UVector; URowVector; UInt; UArray UInt]
+  [UnsizedType.UReal; UArray UReal; UComplex; UArray UComplex; UVector; URowVector; UInt; UArray UInt]
 
 let all_vector_types_size = List.length all_vector_types
 
@@ -422,7 +424,11 @@ let add_qualified (name, rt, argts) =
 let add_nullary name = add_unqualified (name, UnsizedType.ReturnType UReal, [])
 
 let add_binary name =
-  add_unqualified (name, ReturnType UReal, [UnsizedType.UReal; UReal])
+  add_unqualified (name, ReturnType UReal, [UnsizedType.UReal; UReal]);
+  add_unqualified (name, ReturnType UComplex, [UnsizedType.UComplex; UComplex]);
+  add_unqualified (name, ReturnType UComplex, [UnsizedType.UReal; UComplex]);
+  add_unqualified (name, ReturnType UComplex, [UnsizedType.UComplex; UReal])
+
 
 let add_binary_vec name =
   List.iter
@@ -430,8 +436,8 @@ let add_binary_vec name =
       List.iter
         ~f:(fun j ->
           add_unqualified (name, ReturnType (ints_to_real i), [i; j]) )
-        [UnsizedType.UInt; UReal] )
-    [UnsizedType.UInt; UReal] ;
+        [UnsizedType.UInt; UReal; UComplex] )
+    [UnsizedType.UInt; UReal; UComplex] ;
   List.iter
     ~f:(fun i ->
       List.iter
@@ -440,7 +446,7 @@ let add_binary_vec name =
             ( name
             , ReturnType (ints_to_real (bare_array_type (j, i)))
             , [bare_array_type (j, i); bare_array_type (j, i)] ) )
-        [UnsizedType.UArray UInt; UArray UReal; UVector; URowVector; UMatrix]
+        [UnsizedType.UArray UInt; UArray UReal; UArray UComplex; UVector; URowVector; UMatrix]
       )
     (List.range 0 8) ;
   List.iter
@@ -453,7 +459,7 @@ let add_binary_vec name =
                 ( name
                 , ReturnType (ints_to_real (bare_array_type (k, j)))
                 , [bare_array_type (k, j); i] ) )
-            [ UnsizedType.UArray UInt; UArray UReal; UVector; URowVector
+            [ UnsizedType.UArray UInt; UArray UReal; UArray UComplex; UVector; URowVector
             ; UMatrix ] )
         (List.range 0 8) )
     [UnsizedType.UInt; UReal] ;
@@ -467,7 +473,7 @@ let add_binary_vec name =
                 ( name
                 , ReturnType (ints_to_real (bare_array_type (k, j)))
                 , [i; bare_array_type (k, j)] ) )
-            [ UnsizedType.UArray UInt; UArray UReal; UVector; URowVector
+            [ UnsizedType.UArray UInt; UArray UReal; UArray UComplex; UVector; URowVector
             ; UMatrix ] )
         (List.range 0 8) )
     [UnsizedType.UInt; UReal]
@@ -482,7 +488,7 @@ let add_binary_vec_real_real name =
             ( name
             , ReturnType (bare_array_type (j, i))
             , [bare_array_type (j, i); bare_array_type (j, i)] ) )
-        [UnsizedType.UArray UReal; UVector; URowVector; UMatrix] )
+        [UnsizedType.UArray UReal; UArray UComplex; UVector; URowVector; UMatrix] )
     (List.range 0 8) ;
   List.iter
     ~f:(fun i ->
@@ -494,7 +500,7 @@ let add_binary_vec_real_real name =
                 ( name
                 , ReturnType (bare_array_type (k, j))
                 , [bare_array_type (k, j); i] ) )
-            [UnsizedType.UArray UReal; UVector; URowVector; UMatrix] )
+            [UnsizedType.UArray UReal; UArray UComplex; UVector; URowVector; UMatrix] )
         (List.range 0 8) )
     [UnsizedType.UReal] ;
   List.iter
@@ -507,7 +513,7 @@ let add_binary_vec_real_real name =
                 ( name
                 , ReturnType (bare_array_type (k, j))
                 , [i; bare_array_type (k, j)] ) )
-            [UnsizedType.UArray UReal; UVector; URowVector; UMatrix] )
+            [UnsizedType.UArray UReal; UArray UComplex; UVector; URowVector; UMatrix] )
         (List.range 0 8) )
     [UnsizedType.UReal]
 
