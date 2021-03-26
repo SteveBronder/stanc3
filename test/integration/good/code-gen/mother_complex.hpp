@@ -17,8 +17,23 @@ using namespace stan::math;
 
 
 stan::math::profile_map profiles__;
-static constexpr std::array<const char*, 106> locations_array__ = 
+static constexpr std::array<const char*, 202> locations_array__ = 
 {" (found before start of program)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 450, column 2 to column 20)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 451, column 2 to column 18)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 452, column 2 to column 18)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 453, column 2 to column 31)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 454, column 2 to column 34)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 455, column 2 to column 34)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 456, column 2 to column 29)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 457, column 2 to column 33)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 478, column 2 to column 30)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 479, column 2 to column 34)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 496, column 2 to column 21)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 498, column 2 to column 37)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 499, column 2 to column 37)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 530, column 2 to column 38)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 531, column 2 to column 38)",
  " (in './test/integration/good/code-gen/mother_complex.stan', line 212, column 2 to column 17)",
  " (in './test/integration/good/code-gen/mother_complex.stan', line 213, column 2 to column 17)",
  " (in './test/integration/good/code-gen/mother_complex.stan', line 214, column 2 to column 28)",
@@ -30,13 +45,94 @@ static constexpr std::array<const char*, 106> locations_array__ =
  " (in './test/integration/good/code-gen/mother_complex.stan', line 217, column 30 to column 31)",
  " (in './test/integration/good/code-gen/mother_complex.stan', line 217, column 2 to column 33)",
  " (in './test/integration/good/code-gen/mother_complex.stan', line 227, column 2 to column 12)",
- " (in './test/integration/good/code-gen/mother_complex.stan', line 228, column 2 to column 20)",
- " (in './test/integration/good/code-gen/mother_complex.stan', line 229, column 26 to column 31)",
- " (in './test/integration/good/code-gen/mother_complex.stan', line 229, column 2 to column 33)",
- " (in './test/integration/good/code-gen/mother_complex.stan', line 230, column 29 to column 34)",
- " (in './test/integration/good/code-gen/mother_complex.stan', line 230, column 2 to column 38)",
- " (in './test/integration/good/code-gen/mother_complex.stan', line 231, column 29 to column 34)",
- " (in './test/integration/good/code-gen/mother_complex.stan', line 231, column 2 to column 40)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 228, column 18 to column 23)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 228, column 2 to column 25)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 229, column 21 to column 26)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 229, column 2 to column 30)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 230, column 21 to column 26)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 230, column 2 to column 32)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 230, column 32 to column 50)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 231, column 26 to column 31)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 231, column 2 to column 33)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 232, column 29 to column 34)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 232, column 2 to column 38)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 233, column 29 to column 34)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 233, column 2 to column 40)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 251, column 2 to column 13)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 252, column 12 to column 13)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 252, column 2 to column 15)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 253, column 13 to column 14)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 253, column 2 to column 34)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 254, column 2 to column 15)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 255, column 2 to column 23)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 256, column 2 to column 32)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 267, column 2 to column 17)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 268, column 2 to column 17)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 269, column 2 to column 20)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 270, column 2 to column 16)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 271, column 2 to column 18)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 272, column 2 to column 18)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 295, column 4 to column 14)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 296, column 4 to column 35)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 297, column 4 to line 299, column 5)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 298, column 6 to column 12)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 300, column 4 to column 31)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 301, column 4 to line 303, column 5)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 302, column 6 to column 12)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 294, column 2 to line 304, column 3)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 307, column 2 to column 25)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 313, column 2 to column 23)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 314, column 2 to column 30)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 318, column 2 to column 35)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 319, column 41 to column 46)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 319, column 2 to column 48)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 320, column 44 to column 49)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 320, column 2 to column 53)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 321, column 44 to column 49)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 321, column 2 to column 55)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 336, column 2 to column 44)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 337, column 2 to column 48)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 338, column 2 to column 48)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 339, column 2 to column 52)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 340, column 2 to column 56)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 341, column 2 to column 60)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 342, column 2 to column 62)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 343, column 2 to column 66)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 344, column 2 to column 62)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 345, column 2 to column 66)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 347, column 2 to column 56)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 348, column 2 to column 60)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 349, column 2 to column 62)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 350, column 2 to column 66)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 351, column 2 to column 62)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 352, column 2 to column 66)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 354, column 2 to column 60)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 355, column 2 to column 64)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 356, column 2 to column 66)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 357, column 2 to column 70)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 358, column 2 to column 66)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 359, column 2 to column 70)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 361, column 2 to column 60)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 362, column 2 to column 64)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 363, column 2 to column 66)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 364, column 2 to column 70)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 365, column 2 to column 66)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 366, column 2 to column 70)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 368, column 2 to column 62)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 369, column 2 to column 70)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 370, column 2 to column 71)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 371, column 2 to column 79)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 372, column 2 to column 71)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 373, column 2 to column 79)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 446, column 2 to column 52)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 456, column 26 to column 27)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 457, column 26 to column 27)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 457, column 28 to column 29)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 457, column 30 to column 31)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 478, column 27 to column 28)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 479, column 27 to column 28)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 479, column 29 to column 30)",
+ " (in './test/integration/good/code-gen/mother_complex.stan', line 479, column 31 to column 32)",
  " (in './test/integration/good/code-gen/mother_complex.stan', line 29, column 4 to column 18)",
  " (in './test/integration/good/code-gen/mother_complex.stan', line 30, column 4 to column 13)",
  " (in './test/integration/good/code-gen/mother_complex.stan', line 28, column 21 to line 31, column 3)",
@@ -135,12 +231,12 @@ foo_bar0(std::ostream* pstream__) {
   local_scalar_t__ DUMMY_VAR__(std::numeric_limits<double>::quiet_NaN());
   (void) DUMMY_VAR__;  // suppress unused var warning
   try {
-    local_scalar_t__ a;
+    std::complex<local_scalar_t__> a;
     a = DUMMY_VAR__;
     
-    current_statement__ = 19;
+    current_statement__ = 115;
     a = 0;
-    current_statement__ = 20;
+    current_statement__ = 116;
     return a;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -168,7 +264,7 @@ foo_bar1(const T0__& x, std::ostream* pstream__) {
   local_scalar_t__ DUMMY_VAR__(std::numeric_limits<double>::quiet_NaN());
   (void) DUMMY_VAR__;  // suppress unused var warning
   try {
-    current_statement__ = 22;
+    current_statement__ = 118;
     return x;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -198,7 +294,7 @@ foo_bar2(const T0__& x, const T1__& y, std::ostream* pstream__) {
   local_scalar_t__ DUMMY_VAR__(std::numeric_limits<double>::quiet_NaN());
   (void) DUMMY_VAR__;  // suppress unused var warning
   try {
-    current_statement__ = 24;
+    current_statement__ = 120;
     return (x + y);
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -228,105 +324,105 @@ foo_1(const T0__& a, std::ostream* pstream__) {
   local_scalar_t__ DUMMY_VAR__(std::numeric_limits<double>::quiet_NaN());
   (void) DUMMY_VAR__;  // suppress unused var warning
   try {
-    current_statement__ = 35;
+    current_statement__ = 131;
     while (1) {
-      local_scalar_t__ z;
+      std::complex<local_scalar_t__> z;
       z = DUMMY_VAR__;
       
       Eigen::Matrix<local_scalar_t__, -1, -1> vs;
       vs = Eigen::Matrix<local_scalar_t__, -1, -1>(2, 3);
       stan::math::fill(vs, DUMMY_VAR__);
       
-      current_statement__ = 28;
+      current_statement__ = 124;
       for (int sym1__ = 1; sym1__ <= rows(vs); ++sym1__) {
-        current_statement__ = 28;
+        current_statement__ = 124;
         for (int sym2__ = 1;
              sym2__ <= stan::math::size(rvalue(vs, "vs", index_uni(sym1__)));
              ++sym2__) {
           {
             local_scalar_t__ v;
-            current_statement__ = 28;
+            current_statement__ = 124;
             v = rvalue(vs, "vs", index_uni(sym1__), index_uni(sym2__));
-            current_statement__ = 29;
+            current_statement__ = 125;
             z = 0;
             break;
           }}}
-      current_statement__ = 31;
+      current_statement__ = 127;
       for (int sym1__ = 1; sym1__ <= rows(vs); ++sym1__) {
-        current_statement__ = 31;
+        current_statement__ = 127;
         for (int sym2__ = 1;
              sym2__ <= stan::math::size(rvalue(vs, "vs", index_uni(sym1__)));
              ++sym2__) {
           {
             local_scalar_t__ v;
-            current_statement__ = 31;
+            current_statement__ = 127;
             v = rvalue(vs, "vs", index_uni(sym1__), index_uni(sym2__));
-            current_statement__ = 32;
+            current_statement__ = 128;
             z = 3.1;
             continue;
           }}}
     }
-    current_statement__ = 45;
+    current_statement__ = 141;
     while (1) {
-      local_scalar_t__ z;
+      std::complex<local_scalar_t__> z;
       z = DUMMY_VAR__;
       
       Eigen::Matrix<local_scalar_t__, -1, 1> vs;
       vs = Eigen::Matrix<local_scalar_t__, -1, 1>(2);
       stan::math::fill(vs, DUMMY_VAR__);
       
-      current_statement__ = 38;
+      current_statement__ = 134;
       for (int sym1__ = 1; sym1__ <= stan::math::size(vs); ++sym1__) {
         {
           local_scalar_t__ v;
-          current_statement__ = 38;
+          current_statement__ = 134;
           v = vs[(sym1__ - 1)];
-          current_statement__ = 39;
+          current_statement__ = 135;
           z = 0;
           break;
         }}
-      current_statement__ = 41;
+      current_statement__ = 137;
       for (int sym1__ = 1; sym1__ <= stan::math::size(vs); ++sym1__) {
         {
           local_scalar_t__ v;
-          current_statement__ = 41;
+          current_statement__ = 137;
           v = vs[(sym1__ - 1)];
-          current_statement__ = 42;
+          current_statement__ = 138;
           z = 3.2;
           continue;
         }}
     }
-    current_statement__ = 55;
+    current_statement__ = 151;
     while (1) {
-      local_scalar_t__ z;
+      std::complex<local_scalar_t__> z;
       z = DUMMY_VAR__;
       
       Eigen::Matrix<local_scalar_t__, 1, -1> vs;
       vs = Eigen::Matrix<local_scalar_t__, 1, -1>(2);
       stan::math::fill(vs, DUMMY_VAR__);
       
-      current_statement__ = 48;
+      current_statement__ = 144;
       for (int sym1__ = 1; sym1__ <= stan::math::size(vs); ++sym1__) {
         {
           local_scalar_t__ v;
-          current_statement__ = 48;
+          current_statement__ = 144;
           v = vs[(sym1__ - 1)];
-          current_statement__ = 49;
+          current_statement__ = 145;
           z = 0;
           break;
         }}
-      current_statement__ = 51;
+      current_statement__ = 147;
       for (int sym1__ = 1; sym1__ <= stan::math::size(vs); ++sym1__) {
         {
           local_scalar_t__ v;
-          current_statement__ = 51;
+          current_statement__ = 147;
           v = vs[(sym1__ - 1)];
-          current_statement__ = 52;
+          current_statement__ = 148;
           z = 3.3;
           continue;
         }}
     }
-    current_statement__ = 56;
+    current_statement__ = 152;
     return 0;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -360,16 +456,16 @@ foo_2(const int& a, std::ostream* pstream__) {
     int y;
     y = std::numeric_limits<int>::min();
     
-    current_statement__ = 60;
+    current_statement__ = 156;
     for (int sym1__ = 1; sym1__ <= stan::math::size(vs); ++sym1__) {
       {
         int v;
-        current_statement__ = 60;
+        current_statement__ = 156;
         v = vs[(sym1__ - 1)];
-        current_statement__ = 61;
+        current_statement__ = 157;
         y = v;
       }}
-    current_statement__ = 62;
+    current_statement__ = 158;
     return 0;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -397,7 +493,7 @@ foo_4(const T0__& x, std::ostream* pstream__) {
   local_scalar_t__ DUMMY_VAR__(std::numeric_limits<double>::quiet_NaN());
   (void) DUMMY_VAR__;  // suppress unused var warning
   try {
-    current_statement__ = 64;
+    current_statement__ = 160;
     std::stringstream errmsg_stream__;
     errmsg_stream__ << "user-specified rejection";
     errmsg_stream__ << x;
@@ -431,19 +527,19 @@ relative_diff(const T0__& x, const T1__& y, const T2__& max_,
   local_scalar_t__ DUMMY_VAR__(std::numeric_limits<double>::quiet_NaN());
   (void) DUMMY_VAR__;  // suppress unused var warning
   try {
-    local_scalar_t__ abs_diff;
+    std::complex<local_scalar_t__> abs_diff;
     abs_diff = DUMMY_VAR__;
     
-    local_scalar_t__ avg_scale;
+    std::complex<local_scalar_t__> avg_scale;
     avg_scale = DUMMY_VAR__;
     
-    current_statement__ = 68;
+    current_statement__ = 164;
     abs_diff = stan::math::fabs((x - y));
-    current_statement__ = 69;
+    current_statement__ = 165;
     avg_scale = ((stan::math::fabs(x) + stan::math::fabs(y)) / 2);
-    current_statement__ = 71;
+    current_statement__ = 167;
     if (logical_gt((abs_diff / avg_scale), max_)) {
-      current_statement__ = 70;
+      current_statement__ = 166;
       std::stringstream errmsg_stream__;
       errmsg_stream__ << "user-specified rejection, difference above ";
       errmsg_stream__ << max_;
@@ -453,9 +549,9 @@ relative_diff(const T0__& x, const T1__& y, const T2__& max_,
       errmsg_stream__ << y;
       throw std::domain_error(errmsg_stream__.str());
     } 
-    current_statement__ = 73;
+    current_statement__ = 169;
     if (logical_lt((abs_diff / avg_scale), min_)) {
-      current_statement__ = 72;
+      current_statement__ = 168;
       std::stringstream errmsg_stream__;
       errmsg_stream__ << "user-specified rejection, difference below ";
       errmsg_stream__ << min_;
@@ -465,7 +561,7 @@ relative_diff(const T0__& x, const T1__& y, const T2__& max_,
       errmsg_stream__ << y;
       throw std::domain_error(errmsg_stream__.str());
     } 
-    current_statement__ = 74;
+    current_statement__ = 170;
     return (abs_diff / avg_scale);
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -490,8 +586,8 @@ template <typename T0__, typename T1__>
 Eigen::Matrix<stan::promote_args_t<stan::value_type_t<T0__>,
 stan::value_type_t<T1__>>, -1, 1>
 foo_5(const T0__& shared_params_arg__, const T1__& job_params_arg__,
-      const std::vector<double>& data_r, const std::vector<int>& data_i,
-      std::ostream* pstream__) {
+      const std::vector<std::complex<double>>& data_r,
+      const std::vector<int>& data_i, std::ostream* pstream__) {
   using local_scalar_t__ = stan::promote_args_t<stan::value_type_t<T0__>,
           stan::value_type_t<T1__>>;
   int current_statement__ = 0; 
@@ -502,7 +598,7 @@ foo_5(const T0__& shared_params_arg__, const T1__& job_params_arg__,
   local_scalar_t__ DUMMY_VAR__(std::numeric_limits<double>::quiet_NaN());
   (void) DUMMY_VAR__;  // suppress unused var warning
   try {
-    current_statement__ = 76;
+    current_statement__ = 172;
     return (Eigen::Matrix<double,-1,1>(3) << 1, 2, 3).finished();
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -517,8 +613,8 @@ template <typename T0__, typename T1__>
 Eigen::Matrix<stan::promote_args_t<stan::value_type_t<T0__>,
 stan::value_type_t<T1__>>, -1, 1>
 operator()(const T0__& shared_params, const T1__& job_params,
-           const std::vector<double>& data_r, const std::vector<int>& data_i,
-           std::ostream* pstream__)  const 
+           const std::vector<std::complex<double>>& data_r,
+           const std::vector<int>& data_i, std::ostream* pstream__)  const 
 {
 return foo_5(shared_params, job_params, data_r, data_i, pstream__);
 }
@@ -541,7 +637,7 @@ foo_five_args(const T0__& x1, const T1__& x2, const T2__& x3, const T3__& x4,
   local_scalar_t__ DUMMY_VAR__(std::numeric_limits<double>::quiet_NaN());
   (void) DUMMY_VAR__;  // suppress unused var warning
   try {
-    current_statement__ = 78;
+    current_statement__ = 174;
     return x1;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -591,7 +687,7 @@ f0(const int& a1, const std::vector<int>& a2,
   local_scalar_t__ DUMMY_VAR__(std::numeric_limits<double>::quiet_NaN());
   (void) DUMMY_VAR__;  // suppress unused var warning
   try {
-    current_statement__ = 80;
+    current_statement__ = 176;
     if (pstream__) {
       stan_print(pstream__, "hi");
       stan_print(pstream__, "\n");
@@ -651,7 +747,7 @@ f1(const int& a1, const std::vector<int>& a2,
   local_scalar_t__ DUMMY_VAR__(std::numeric_limits<double>::quiet_NaN());
   (void) DUMMY_VAR__;  // suppress unused var warning
   try {
-    current_statement__ = 82;
+    current_statement__ = 178;
     return a1;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -708,7 +804,7 @@ f2(const int& a1, const std::vector<int>& a2,
   local_scalar_t__ DUMMY_VAR__(std::numeric_limits<double>::quiet_NaN());
   (void) DUMMY_VAR__;  // suppress unused var warning
   try {
-    current_statement__ = 84;
+    current_statement__ = 180;
     return a2;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -765,7 +861,7 @@ f3(const int& a1, const std::vector<int>& a2,
   local_scalar_t__ DUMMY_VAR__(std::numeric_limits<double>::quiet_NaN());
   (void) DUMMY_VAR__;  // suppress unused var warning
   try {
-    current_statement__ = 86;
+    current_statement__ = 182;
     return a3;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -824,7 +920,7 @@ f4(const int& a1, const std::vector<int>& a2,
   local_scalar_t__ DUMMY_VAR__(std::numeric_limits<double>::quiet_NaN());
   (void) DUMMY_VAR__;  // suppress unused var warning
   try {
-    current_statement__ = 88;
+    current_statement__ = 184;
     return a4;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -885,7 +981,7 @@ f5(const int& a1, const std::vector<int>& a2,
   local_scalar_t__ DUMMY_VAR__(std::numeric_limits<double>::quiet_NaN());
   (void) DUMMY_VAR__;  // suppress unused var warning
   try {
-    current_statement__ = 90;
+    current_statement__ = 186;
     return a5;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -946,7 +1042,7 @@ f6(const int& a1, const std::vector<int>& a2,
   local_scalar_t__ DUMMY_VAR__(std::numeric_limits<double>::quiet_NaN());
   (void) DUMMY_VAR__;  // suppress unused var warning
   try {
-    current_statement__ = 92;
+    current_statement__ = 188;
     return a6;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -1007,7 +1103,7 @@ f7(const int& a1, const std::vector<int>& a2,
   local_scalar_t__ DUMMY_VAR__(std::numeric_limits<double>::quiet_NaN());
   (void) DUMMY_VAR__;  // suppress unused var warning
   try {
-    current_statement__ = 94;
+    current_statement__ = 190;
     return a7;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -1068,7 +1164,7 @@ f8(const int& a1, const std::vector<int>& a2,
   local_scalar_t__ DUMMY_VAR__(std::numeric_limits<double>::quiet_NaN());
   (void) DUMMY_VAR__;  // suppress unused var warning
   try {
-    current_statement__ = 96;
+    current_statement__ = 192;
     return a8;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -1129,7 +1225,7 @@ f9(const int& a1, const std::vector<int>& a2,
   local_scalar_t__ DUMMY_VAR__(std::numeric_limits<double>::quiet_NaN());
   (void) DUMMY_VAR__;  // suppress unused var warning
   try {
-    current_statement__ = 98;
+    current_statement__ = 194;
     return a9;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -1190,7 +1286,7 @@ f10(const int& a1, const std::vector<int>& a2,
   local_scalar_t__ DUMMY_VAR__(std::numeric_limits<double>::quiet_NaN());
   (void) DUMMY_VAR__;  // suppress unused var warning
   try {
-    current_statement__ = 100;
+    current_statement__ = 196;
     return a10;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -1251,7 +1347,7 @@ f11(const int& a1, const std::vector<int>& a2,
   local_scalar_t__ DUMMY_VAR__(std::numeric_limits<double>::quiet_NaN());
   (void) DUMMY_VAR__;  // suppress unused var warning
   try {
-    current_statement__ = 102;
+    current_statement__ = 198;
     return a11;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -1312,7 +1408,7 @@ f12(const int& a1, const std::vector<int>& a2,
   local_scalar_t__ DUMMY_VAR__(std::numeric_limits<double>::quiet_NaN());
   (void) DUMMY_VAR__;  // suppress unused var warning
   try {
-    current_statement__ = 104;
+    current_statement__ = 200;
     return a12;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -1349,14 +1445,32 @@ class mother_complex_model final : public model_base_crtp<mother_complex_model> 
   int N;
   int M;
   int K;
-  double J;
-  std::vector<double> d_complex_1d_ar;
-  std::vector<std::vector<std::vector<double>>> d_complex_3d_ar;
+  std::complex<double> J;
+  std::vector<std::complex<double>> d_complex_1d_ar;
+  std::vector<std::vector<std::vector<std::complex<double>>>> d_complex_3d_ar;
   int d_int;
-  double d_complex;
-  std::vector<double> d_complex_array;
-  std::vector<std::vector<double>> d_complex_array_2d;
-  std::vector<std::vector<std::vector<double>>> d_complex_array_3d;
+  std::vector<int> d_int_array;
+  std::vector<std::vector<int>> d_int_array_2d;
+  std::vector<std::vector<std::vector<int>>> d_int_array_3d;
+  std::complex<double> d_complex;
+  std::vector<std::complex<double>> d_complex_array;
+  std::vector<std::vector<std::complex<double>>> d_complex_array_2d;
+  std::vector<std::vector<std::vector<std::complex<double>>>> d_complex_array_3d;
+  int td_int;
+  std::vector<int> td_1d;
+  std::vector<int> td_1dk;
+  int td_a;
+  std::complex<double> td_b;
+  std::complex<double> td_c;
+  std::vector<std::complex<double>> dat;
+  std::vector<int> dat_int;
+  std::vector<std::vector<std::complex<double>>> x_r;
+  std::vector<std::vector<int>> x_i;
+  std::vector<std::vector<int>> arr_mul_ind;
+  std::complex<double> transformed_data_complex;
+  std::vector<std::complex<double>> transformed_data_complex_array;
+  std::vector<std::vector<std::complex<double>>> transformed_data_complex_array_2d;
+  std::vector<std::vector<std::vector<std::complex<double>>>> transformed_data_complex_array_3d;
  
  public:
   ~mother_complex_model() { }
@@ -1364,7 +1478,7 @@ class mother_complex_model final : public model_base_crtp<mother_complex_model> 
   inline std::string model_name() const final { return "mother_complex_model"; }
 
   inline std::vector<std::string> model_compile_info() const noexcept {
-    return std::vector<std::string>{"stanc_version = %%NAME%%3 %%VERSION%%", "stancflags = --debug-ast"};
+    return std::vector<std::string>{"stanc_version = %%NAME%%3 %%VERSION%%", "stancflags = "};
   }
   
   
@@ -1385,163 +1499,473 @@ class mother_complex_model final : public model_base_crtp<mother_complex_model> 
       pos__ = std::numeric_limits<int>::min();
       
       pos__ = 1;
-      current_statement__ = 1;
+      current_statement__ = 16;
       context__.validate_dims("data initialization","N","int",
           context__.to_vec());
       N = std::numeric_limits<int>::min();
       
-      current_statement__ = 1;
+      current_statement__ = 16;
       N = context__.vals_i("N")[(1 - 1)];
-      current_statement__ = 1;
-      current_statement__ = 1;
+      current_statement__ = 16;
+      current_statement__ = 16;
       check_greater_or_equal(function__, "N", N, 0);
-      current_statement__ = 2;
+      current_statement__ = 17;
       context__.validate_dims("data initialization","M","int",
           context__.to_vec());
       M = std::numeric_limits<int>::min();
       
-      current_statement__ = 2;
+      current_statement__ = 17;
       M = context__.vals_i("M")[(1 - 1)];
-      current_statement__ = 2;
-      current_statement__ = 2;
+      current_statement__ = 17;
+      current_statement__ = 17;
       check_greater_or_equal(function__, "M", M, 0);
-      current_statement__ = 3;
+      current_statement__ = 18;
       context__.validate_dims("data initialization","K","int",
           context__.to_vec());
       K = std::numeric_limits<int>::min();
       
-      current_statement__ = 3;
+      current_statement__ = 18;
       K = context__.vals_i("K")[(1 - 1)];
-      current_statement__ = 3;
-      current_statement__ = 3;
+      current_statement__ = 18;
+      current_statement__ = 18;
       check_greater_or_equal(function__, "K", K, 0);
-      current_statement__ = 3;
-      current_statement__ = 3;
+      current_statement__ = 18;
+      current_statement__ = 18;
       check_less_or_equal(function__, "K", K, (N * M));
-      current_statement__ = 4;
-      context__.validate_dims("data initialization","J","double",
-          context__.to_vec());
+      current_statement__ = 19;
+      context__.validate_dims("data initialization","J",
+          "std::complex<double>",context__.to_vec());
       J = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 4;
+      current_statement__ = 19;
       assign(J, context__.vals_r("J")[(1 - 1)], "assigning variable J");
-      current_statement__ = 5;
+      current_statement__ = 20;
       validate_non_negative_index("d_complex_1d_ar", "N", N);
-      current_statement__ = 6;
+      current_statement__ = 21;
       context__.validate_dims("data initialization","d_complex_1d_ar",
-          "double",context__.to_vec(N));
-      d_complex_1d_ar = std::vector<double>(N, std::numeric_limits<double>::quiet_NaN());
+          "std::complex<double>",context__.to_vec(N));
+      d_complex_1d_ar = std::vector<std::complex<double>>(N, std::numeric_limits<double>::quiet_NaN());
       
-      current_statement__ = 6;
+      current_statement__ = 21;
       d_complex_1d_ar = context__.vals_r("d_complex_1d_ar");
-      current_statement__ = 7;
+      current_statement__ = 22;
       validate_non_negative_index("d_complex_3d_ar", "N", N);
-      current_statement__ = 8;
+      current_statement__ = 23;
       validate_non_negative_index("d_complex_3d_ar", "M", M);
-      current_statement__ = 9;
+      current_statement__ = 24;
       validate_non_negative_index("d_complex_3d_ar", "K", K);
-      current_statement__ = 10;
+      current_statement__ = 25;
       context__.validate_dims("data initialization","d_complex_3d_ar",
-          "double",context__.to_vec(N, M, K));
-      d_complex_3d_ar = std::vector<std::vector<std::vector<double>>>(N, std::vector<std::vector<double>>(M, std::vector<double>(K, std::numeric_limits<double>::quiet_NaN())));
+          "std::complex<double>",context__.to_vec(N, M, K));
+      d_complex_3d_ar = std::vector<std::vector<std::vector<std::complex<double>>>>(N, std::vector<std::vector<std::complex<double>>>(M, std::vector<std::complex<double>>(K, std::numeric_limits<double>::quiet_NaN())));
       
       {
-        std::vector<local_scalar_t__> d_complex_3d_ar_flat__;
-        current_statement__ = 10;
+        std::vector<std::complex<local_scalar_t__>> d_complex_3d_ar_flat__;
+        current_statement__ = 25;
         d_complex_3d_ar_flat__ = context__.vals_r("d_complex_3d_ar");
-        current_statement__ = 10;
+        current_statement__ = 25;
         pos__ = 1;
-        current_statement__ = 10;
+        current_statement__ = 25;
         for (int sym1__ = 1; sym1__ <= K; ++sym1__) {
-          current_statement__ = 10;
+          current_statement__ = 25;
           for (int sym2__ = 1; sym2__ <= M; ++sym2__) {
-            current_statement__ = 10;
+            current_statement__ = 25;
             for (int sym3__ = 1; sym3__ <= N; ++sym3__) {
-              current_statement__ = 10;
+              current_statement__ = 25;
               assign(d_complex_3d_ar, d_complex_3d_ar_flat__[(pos__ - 1)],
                 "assigning variable d_complex_3d_ar", index_uni(sym3__),
                                                         index_uni(sym2__),
                                                         index_uni(sym1__));
-              current_statement__ = 10;
+              current_statement__ = 25;
               pos__ = (pos__ + 1);}}}
       }
-      current_statement__ = 11;
+      current_statement__ = 26;
       context__.validate_dims("data initialization","d_int","int",
           context__.to_vec());
       d_int = std::numeric_limits<int>::min();
       
-      current_statement__ = 11;
+      current_statement__ = 26;
       d_int = context__.vals_i("d_int")[(1 - 1)];
-      current_statement__ = 12;
-      context__.validate_dims("data initialization","d_complex","double",
-          context__.to_vec());
-      d_complex = std::numeric_limits<double>::quiet_NaN();
+      current_statement__ = 27;
+      validate_non_negative_index("d_int_array", "d_int", d_int);
+      current_statement__ = 28;
+      context__.validate_dims("data initialization","d_int_array","int",
+          context__.to_vec(d_int));
+      d_int_array = std::vector<int>(d_int, std::numeric_limits<int>::min());
       
-      current_statement__ = 12;
-      assign(d_complex, context__.vals_r("d_complex")[(1 - 1)],
-        "assigning variable d_complex");
-      current_statement__ = 13;
-      validate_non_negative_index("d_complex_array", "d_int", d_int);
-      current_statement__ = 14;
-      context__.validate_dims("data initialization","d_complex_array",
-          "double",context__.to_vec(d_int));
-      d_complex_array = std::vector<double>(d_int, std::numeric_limits<double>::quiet_NaN());
-      
-      current_statement__ = 14;
-      d_complex_array = context__.vals_r("d_complex_array");
-      current_statement__ = 15;
-      validate_non_negative_index("d_complex_array_2d", "d_int", d_int);
-      current_statement__ = 16;
-      context__.validate_dims("data initialization","d_complex_array_2d",
-          "double",context__.to_vec(d_int, 2));
-      d_complex_array_2d = std::vector<std::vector<double>>(d_int, std::vector<double>(2, std::numeric_limits<double>::quiet_NaN()));
+      current_statement__ = 28;
+      d_int_array = context__.vals_i("d_int_array");
+      current_statement__ = 29;
+      validate_non_negative_index("d_int_array_2d", "d_int", d_int);
+      current_statement__ = 30;
+      context__.validate_dims("data initialization","d_int_array_2d","int",
+          context__.to_vec(d_int, 2));
+      d_int_array_2d = std::vector<std::vector<int>>(d_int, std::vector<int>(2, std::numeric_limits<int>::min()));
       
       {
-        std::vector<local_scalar_t__> d_complex_array_2d_flat__;
-        current_statement__ = 16;
-        d_complex_array_2d_flat__ = context__.vals_r("d_complex_array_2d");
-        current_statement__ = 16;
+        std::vector<int> d_int_array_2d_flat__;
+        current_statement__ = 30;
+        d_int_array_2d_flat__ = context__.vals_i("d_int_array_2d");
+        current_statement__ = 30;
         pos__ = 1;
-        current_statement__ = 16;
+        current_statement__ = 30;
         for (int sym1__ = 1; sym1__ <= 2; ++sym1__) {
-          current_statement__ = 16;
+          current_statement__ = 30;
           for (int sym2__ = 1; sym2__ <= d_int; ++sym2__) {
-            current_statement__ = 16;
+            current_statement__ = 30;
+            assign(d_int_array_2d, d_int_array_2d_flat__[(pos__ - 1)],
+              "assigning variable d_int_array_2d", index_uni(sym2__),
+                                                     index_uni(sym1__));
+            current_statement__ = 30;
+            pos__ = (pos__ + 1);}}
+      }
+      current_statement__ = 31;
+      validate_non_negative_index("d_int_array_3d", "d_int", d_int);
+      current_statement__ = 32;
+      context__.validate_dims("data initialization","d_int_array_3d","int",
+          context__.to_vec(d_int, 2, 3));
+      d_int_array_3d = std::vector<std::vector<std::vector<int>>>(d_int, std::vector<std::vector<int>>(2, std::vector<int>(3, std::numeric_limits<int>::min())));
+      
+      {
+        std::vector<int> d_int_array_3d_flat__;
+        current_statement__ = 32;
+        d_int_array_3d_flat__ = context__.vals_i("d_int_array_3d");
+        current_statement__ = 32;
+        pos__ = 1;
+        current_statement__ = 32;
+        for (int sym1__ = 1; sym1__ <= 3; ++sym1__) {
+          current_statement__ = 32;
+          for (int sym2__ = 1; sym2__ <= 2; ++sym2__) {
+            current_statement__ = 32;
+            for (int sym3__ = 1; sym3__ <= d_int; ++sym3__) {
+              current_statement__ = 32;
+              assign(d_int_array_3d, d_int_array_3d_flat__[(pos__ - 1)],
+                "assigning variable d_int_array_3d", index_uni(sym3__),
+                                                       index_uni(sym2__),
+                                                       index_uni(sym1__));
+              current_statement__ = 32;
+              pos__ = (pos__ + 1);}}}
+      }
+      current_statement__ = 33;
+      context__.validate_dims("data initialization","d_complex",
+          "std::complex<double>",context__.to_vec());
+      d_complex = std::numeric_limits<double>::quiet_NaN();
+      
+      current_statement__ = 33;
+      assign(d_complex, context__.vals_r("d_complex")[(1 - 1)],
+        "assigning variable d_complex");
+      current_statement__ = 34;
+      validate_non_negative_index("d_complex_array", "d_int", d_int);
+      current_statement__ = 35;
+      context__.validate_dims("data initialization","d_complex_array",
+          "std::complex<double>",context__.to_vec(d_int));
+      d_complex_array = std::vector<std::complex<double>>(d_int, std::numeric_limits<double>::quiet_NaN());
+      
+      current_statement__ = 35;
+      d_complex_array = context__.vals_r("d_complex_array");
+      current_statement__ = 36;
+      validate_non_negative_index("d_complex_array_2d", "d_int", d_int);
+      current_statement__ = 37;
+      context__.validate_dims("data initialization","d_complex_array_2d",
+          "std::complex<double>",context__.to_vec(d_int, 2));
+      d_complex_array_2d = std::vector<std::vector<std::complex<double>>>(d_int, std::vector<std::complex<double>>(2, std::numeric_limits<double>::quiet_NaN()));
+      
+      {
+        std::vector<std::complex<local_scalar_t__>> d_complex_array_2d_flat__;
+        current_statement__ = 37;
+        d_complex_array_2d_flat__ = context__.vals_r("d_complex_array_2d");
+        current_statement__ = 37;
+        pos__ = 1;
+        current_statement__ = 37;
+        for (int sym1__ = 1; sym1__ <= 2; ++sym1__) {
+          current_statement__ = 37;
+          for (int sym2__ = 1; sym2__ <= d_int; ++sym2__) {
+            current_statement__ = 37;
             assign(d_complex_array_2d,
               d_complex_array_2d_flat__[(pos__ - 1)],
               "assigning variable d_complex_array_2d", index_uni(sym2__),
                                                          index_uni(sym1__));
-            current_statement__ = 16;
+            current_statement__ = 37;
             pos__ = (pos__ + 1);}}
       }
-      current_statement__ = 17;
+      current_statement__ = 38;
       validate_non_negative_index("d_complex_array_3d", "d_int", d_int);
-      current_statement__ = 18;
+      current_statement__ = 39;
       context__.validate_dims("data initialization","d_complex_array_3d",
-          "double",context__.to_vec(d_int, 2, 3));
-      d_complex_array_3d = std::vector<std::vector<std::vector<double>>>(d_int, std::vector<std::vector<double>>(2, std::vector<double>(3, std::numeric_limits<double>::quiet_NaN())));
+          "std::complex<double>",context__.to_vec(d_int, 2, 3));
+      d_complex_array_3d = std::vector<std::vector<std::vector<std::complex<double>>>>(d_int, std::vector<std::vector<std::complex<double>>>(2, std::vector<std::complex<double>>(3, std::numeric_limits<double>::quiet_NaN())));
       
       {
-        std::vector<local_scalar_t__> d_complex_array_3d_flat__;
-        current_statement__ = 18;
+        std::vector<std::complex<local_scalar_t__>> d_complex_array_3d_flat__;
+        current_statement__ = 39;
         d_complex_array_3d_flat__ = context__.vals_r("d_complex_array_3d");
-        current_statement__ = 18;
+        current_statement__ = 39;
         pos__ = 1;
-        current_statement__ = 18;
+        current_statement__ = 39;
         for (int sym1__ = 1; sym1__ <= 3; ++sym1__) {
-          current_statement__ = 18;
+          current_statement__ = 39;
           for (int sym2__ = 1; sym2__ <= 2; ++sym2__) {
-            current_statement__ = 18;
+            current_statement__ = 39;
             for (int sym3__ = 1; sym3__ <= d_int; ++sym3__) {
-              current_statement__ = 18;
+              current_statement__ = 39;
               assign(d_complex_array_3d,
                 d_complex_array_3d_flat__[(pos__ - 1)],
                 "assigning variable d_complex_array_3d", index_uni(sym3__),
                                                            index_uni(sym2__),
                                                            index_uni(sym1__));
-              current_statement__ = 18;
+              current_statement__ = 39;
               pos__ = (pos__ + 1);}}}
       }
+      current_statement__ = 40;
+      td_int = std::numeric_limits<int>::min();
+      
+      current_statement__ = 41;
+      validate_non_negative_index("td_1d", "N", N);
+      current_statement__ = 42;
+      td_1d = std::vector<int>(N, std::numeric_limits<int>::min());
+      
+      current_statement__ = 43;
+      validate_non_negative_index("td_1dk", "M", M);
+      current_statement__ = 44;
+      td_1dk = std::vector<int>(M, std::numeric_limits<int>::min());
+      
+      current_statement__ = 44;
+      assign(td_1dk, rep_array(1, M), "assigning variable td_1dk");
+      current_statement__ = 45;
+      td_a = std::numeric_limits<int>::min();
+      
+      current_statement__ = 45;
+      td_a = N;
+      current_statement__ = 46;
+      td_b = std::numeric_limits<double>::quiet_NaN();
+      
+      current_statement__ = 46;
+      td_b = (N * J);
+      current_statement__ = 47;
+      td_c = std::numeric_limits<double>::quiet_NaN();
+      
+      current_statement__ = 47;
+      assign(td_c, foo_bar1(td_b, pstream__), "assigning variable td_c");
+      current_statement__ = 48;
+      dat = std::vector<std::complex<double>>(0, std::numeric_limits<double>::quiet_NaN());
+      
+      current_statement__ = 49;
+      dat_int = std::vector<int>(0, std::numeric_limits<int>::min());
+      
+      current_statement__ = 50;
+      x_r = std::vector<std::vector<std::complex<double>>>(0, std::vector<std::complex<double>>(0, std::numeric_limits<double>::quiet_NaN()));
+      
+      current_statement__ = 51;
+      x_i = std::vector<std::vector<int>>(0, std::vector<int>(0, std::numeric_limits<int>::min()));
+      
+      current_statement__ = 52;
+      td_int = (primitive_value(1) || primitive_value(2));
+      current_statement__ = 53;
+      td_int = (primitive_value(1) && primitive_value(2));
+      {
+        std::complex<double> z;
+        z = std::numeric_limits<double>::quiet_NaN();
+        
+        Eigen::Matrix<double, 1, -1> blocked_tdata_vs;
+        blocked_tdata_vs = Eigen::Matrix<double, 1, -1>(2);
+        stan::math::fill(blocked_tdata_vs, std::numeric_limits<double>::quiet_NaN());
+        
+        current_statement__ = 56;
+        for (int sym1__ = 1; sym1__ <= stan::math::size(blocked_tdata_vs);
+             ++sym1__) {
+          {
+            double v;
+            current_statement__ = 56;
+            v = blocked_tdata_vs[(sym1__ - 1)];
+            current_statement__ = 57;
+            z = 0;
+          }}
+        std::vector<int> indices;
+        indices = std::vector<int>(4, std::numeric_limits<int>::min());
+        
+        current_statement__ = 58;
+        assign(indices, std::vector<int>{1, 2, 3, 4},
+          "assigning variable indices");
+        {
+          std::vector<int> sym1__;
+          current_statement__ = 59;
+          assign(sym1__, rvalue(indices, "indices", index_min_max(1, 3)),
+            "assigning variable sym1__");
+          current_statement__ = 59;
+          for (int sym2__ = 1; sym2__ <= stan::math::size(sym1__); ++sym2__) {
+            {
+              int i;
+              current_statement__ = 59;
+              i = sym1__[(sym2__ - 1)];
+              current_statement__ = 60;
+              z = i;
+            }}
+        }
+      }
+      current_statement__ = 62;
+      assign(td_1dk,
+        rvalue(td_1d, "td_1d", index_multi(stan::model::deep_copy(td_1dk))),
+        "assigning variable td_1dk");
+      current_statement__ = 63;
+      arr_mul_ind = std::vector<std::vector<int>>(2, std::vector<int>(2, std::numeric_limits<int>::min()));
+      
+      current_statement__ = 64;
+      assign(arr_mul_ind, std::vector<int>{1, 1},
+        "assigning variable arr_mul_ind", index_uni(1), index_min_max(1, 2));
+      current_statement__ = 65;
+      transformed_data_complex = std::numeric_limits<double>::quiet_NaN();
+      
+      current_statement__ = 66;
+      validate_non_negative_index("transformed_data_complex_array", "d_int",
+                                  d_int);
+      current_statement__ = 67;
+      transformed_data_complex_array = std::vector<std::complex<double>>(d_int, std::numeric_limits<double>::quiet_NaN());
+      
+      current_statement__ = 68;
+      validate_non_negative_index("transformed_data_complex_array_2d",
+                                  "d_int", d_int);
+      current_statement__ = 69;
+      transformed_data_complex_array_2d = std::vector<std::vector<std::complex<double>>>(d_int, std::vector<std::complex<double>>(2, std::numeric_limits<double>::quiet_NaN()));
+      
+      current_statement__ = 70;
+      validate_non_negative_index("transformed_data_complex_array_3d",
+                                  "d_int", d_int);
+      current_statement__ = 71;
+      transformed_data_complex_array_3d = std::vector<std::vector<std::vector<std::complex<double>>>>(d_int, std::vector<std::vector<std::complex<double>>>(2, std::vector<std::complex<double>>(3, std::numeric_limits<double>::quiet_NaN())));
+      
+      current_statement__ = 72;
+      transformed_data_complex = pow(d_int, d_int);
+      current_statement__ = 73;
+      transformed_data_complex = pow(d_complex, d_int);
+      current_statement__ = 74;
+      transformed_data_complex = pow(d_int, d_complex);
+      current_statement__ = 75;
+      transformed_data_complex = pow(d_complex, d_complex);
+      current_statement__ = 76;
+      assign(transformed_data_complex_array, pow(d_int_array, d_int),
+        "assigning variable transformed_data_complex_array");
+      current_statement__ = 77;
+      assign(transformed_data_complex_array, pow(d_int_array, d_complex),
+        "assigning variable transformed_data_complex_array");
+      current_statement__ = 78;
+      assign(transformed_data_complex_array_2d, pow(d_int_array_2d, d_int),
+        "assigning variable transformed_data_complex_array_2d");
+      current_statement__ = 79;
+      assign(transformed_data_complex_array_2d,
+        pow(d_int_array_2d, d_complex),
+        "assigning variable transformed_data_complex_array_2d");
+      current_statement__ = 80;
+      assign(transformed_data_complex_array_3d, pow(d_int_array_3d, d_int),
+        "assigning variable transformed_data_complex_array_3d");
+      current_statement__ = 81;
+      assign(transformed_data_complex_array_3d,
+        pow(d_int_array_3d, d_complex),
+        "assigning variable transformed_data_complex_array_3d");
+      current_statement__ = 82;
+      assign(transformed_data_complex_array, pow(d_int, d_int_array),
+        "assigning variable transformed_data_complex_array");
+      current_statement__ = 83;
+      assign(transformed_data_complex_array, pow(d_complex, d_int_array),
+        "assigning variable transformed_data_complex_array");
+      current_statement__ = 84;
+      assign(transformed_data_complex_array_2d, pow(d_int, d_int_array_2d),
+        "assigning variable transformed_data_complex_array_2d");
+      current_statement__ = 85;
+      assign(transformed_data_complex_array_2d,
+        pow(d_complex, d_int_array_2d),
+        "assigning variable transformed_data_complex_array_2d");
+      current_statement__ = 86;
+      assign(transformed_data_complex_array_3d, pow(d_int, d_int_array_3d),
+        "assigning variable transformed_data_complex_array_3d");
+      current_statement__ = 87;
+      assign(transformed_data_complex_array_3d,
+        pow(d_complex, d_int_array_3d),
+        "assigning variable transformed_data_complex_array_3d");
+      current_statement__ = 88;
+      assign(transformed_data_complex_array, pow(d_int, d_complex_array),
+        "assigning variable transformed_data_complex_array");
+      current_statement__ = 89;
+      assign(transformed_data_complex_array, pow(d_complex, d_complex_array),
+        "assigning variable transformed_data_complex_array");
+      current_statement__ = 90;
+      assign(transformed_data_complex_array_2d,
+        pow(d_int, d_complex_array_2d),
+        "assigning variable transformed_data_complex_array_2d");
+      current_statement__ = 91;
+      assign(transformed_data_complex_array_2d,
+        pow(d_complex, d_complex_array_2d),
+        "assigning variable transformed_data_complex_array_2d");
+      current_statement__ = 92;
+      assign(transformed_data_complex_array_3d,
+        pow(d_int, d_complex_array_3d),
+        "assigning variable transformed_data_complex_array_3d");
+      current_statement__ = 93;
+      assign(transformed_data_complex_array_3d,
+        pow(d_complex, d_complex_array_3d),
+        "assigning variable transformed_data_complex_array_3d");
+      current_statement__ = 94;
+      assign(transformed_data_complex_array, pow(d_complex_array, d_int),
+        "assigning variable transformed_data_complex_array");
+      current_statement__ = 95;
+      assign(transformed_data_complex_array, pow(d_complex_array, d_complex),
+        "assigning variable transformed_data_complex_array");
+      current_statement__ = 96;
+      assign(transformed_data_complex_array_2d,
+        pow(d_complex_array_2d, d_int),
+        "assigning variable transformed_data_complex_array_2d");
+      current_statement__ = 97;
+      assign(transformed_data_complex_array_2d,
+        pow(d_complex_array_2d, d_complex),
+        "assigning variable transformed_data_complex_array_2d");
+      current_statement__ = 98;
+      assign(transformed_data_complex_array_3d,
+        pow(d_complex_array_3d, d_int),
+        "assigning variable transformed_data_complex_array_3d");
+      current_statement__ = 99;
+      assign(transformed_data_complex_array_3d,
+        pow(d_complex_array_3d, d_complex),
+        "assigning variable transformed_data_complex_array_3d");
+      current_statement__ = 100;
+      assign(transformed_data_complex_array, pow(d_int_array, d_int_array),
+        "assigning variable transformed_data_complex_array");
+      current_statement__ = 101;
+      assign(transformed_data_complex_array,
+        pow(d_complex_array, d_complex_array),
+        "assigning variable transformed_data_complex_array");
+      current_statement__ = 102;
+      assign(transformed_data_complex_array_2d,
+        pow(d_int_array_2d, d_int_array_2d),
+        "assigning variable transformed_data_complex_array_2d");
+      current_statement__ = 103;
+      assign(transformed_data_complex_array_2d,
+        pow(d_complex_array_2d, d_complex_array_2d),
+        "assigning variable transformed_data_complex_array_2d");
+      current_statement__ = 104;
+      assign(transformed_data_complex_array_3d,
+        pow(d_int_array_3d, d_int_array_3d),
+        "assigning variable transformed_data_complex_array_3d");
+      current_statement__ = 105;
+      assign(transformed_data_complex_array_3d,
+        pow(d_complex_array_3d, d_complex_array_3d),
+        "assigning variable transformed_data_complex_array_3d");
+      current_statement__ = 106;
+      transformed_data_complex = (d_complex * d_complex);
+      current_statement__ = 107;
+      validate_non_negative_index("p_complex_1d_ar", "N", N);
+      current_statement__ = 108;
+      validate_non_negative_index("p_complex_3d_ar", "N", N);
+      current_statement__ = 109;
+      validate_non_negative_index("p_complex_3d_ar", "M", M);
+      current_statement__ = 110;
+      validate_non_negative_index("p_complex_3d_ar", "K", K);
+      current_statement__ = 111;
+      validate_non_negative_index("tp_complex_1d_ar", "N", N);
+      current_statement__ = 112;
+      validate_non_negative_index("tp_complex_3d_ar", "N", N);
+      current_statement__ = 113;
+      validate_non_negative_index("tp_complex_3d_ar", "M", M);
+      current_statement__ = 114;
+      validate_non_negative_index("tp_complex_3d_ar", "K", K);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
       // Next line prevents compiler griping about no return
@@ -1550,7 +1974,14 @@ class mother_complex_model final : public model_base_crtp<mother_complex_model> 
     num_params_r__ = 0U;
     
     try {
-      
+      num_params_r__ += 1;
+      num_params_r__ += 1;
+      num_params_r__ += 1;
+      num_params_r__ += 5;
+      num_params_r__ += 5;
+      num_params_r__ += 5;
+      num_params_r__ += N;
+      num_params_r__ += N * M * K;
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
       // Next line prevents compiler griping about no return
@@ -1576,7 +2007,70 @@ class mother_complex_model final : public model_base_crtp<mother_complex_model> 
     (void) function__;  // suppress unused var warning
     
     try {
+      std::complex<local_scalar_t__> p_complex;
+      p_complex = DUMMY_VAR__;
       
+      current_statement__ = 1;
+      p_complex = in__.template read<std::complex<local_scalar_t__>>();
+      std::complex<local_scalar_t__> p_upper;
+      p_upper = DUMMY_VAR__;
+      
+      current_statement__ = 2;
+      p_upper = in__.template read<std::complex<local_scalar_t__>>();
+      std::complex<local_scalar_t__> p_lower;
+      p_lower = DUMMY_VAR__;
+      
+      current_statement__ = 3;
+      p_lower = in__.template read<std::complex<local_scalar_t__>>();
+      std::vector<std::complex<local_scalar_t__>> offset_multiplier;
+      offset_multiplier = std::vector<std::complex<local_scalar_t__>>(5, DUMMY_VAR__);
+      
+      current_statement__ = 4;
+      offset_multiplier = in__.template read<std::vector<std::complex<local_scalar_t__>>>(
+                            5);
+      std::vector<std::complex<local_scalar_t__>> no_offset_multiplier;
+      no_offset_multiplier = std::vector<std::complex<local_scalar_t__>>(5, DUMMY_VAR__);
+      
+      current_statement__ = 5;
+      no_offset_multiplier = in__.template read<std::vector<std::complex<local_scalar_t__>>>(
+                               5);
+      std::vector<std::complex<local_scalar_t__>> offset_no_multiplier;
+      offset_no_multiplier = std::vector<std::complex<local_scalar_t__>>(5, DUMMY_VAR__);
+      
+      current_statement__ = 6;
+      offset_no_multiplier = in__.template read<std::vector<std::complex<local_scalar_t__>>>(
+                               5);
+      std::vector<std::complex<local_scalar_t__>> p_complex_1d_ar;
+      p_complex_1d_ar = std::vector<std::complex<local_scalar_t__>>(N, DUMMY_VAR__);
+      
+      current_statement__ = 7;
+      p_complex_1d_ar = in__.template read<std::vector<std::complex<local_scalar_t__>>>(
+                          N);
+      std::vector<std::vector<std::vector<std::complex<local_scalar_t__>>>> p_complex_3d_ar;
+      p_complex_3d_ar = std::vector<std::vector<std::vector<std::complex<local_scalar_t__>>>>(N, std::vector<std::vector<std::complex<local_scalar_t__>>>(M, std::vector<std::complex<local_scalar_t__>>(K, DUMMY_VAR__)));
+      
+      current_statement__ = 8;
+      p_complex_3d_ar = in__.template read<std::vector<std::vector<std::vector<std::complex<local_scalar_t__>>>>>(
+                          N, M, K);
+      std::vector<std::complex<local_scalar_t__>> tp_complex_1d_ar;
+      tp_complex_1d_ar = std::vector<std::complex<local_scalar_t__>>(N, DUMMY_VAR__);
+      
+      std::vector<std::vector<std::vector<std::complex<local_scalar_t__>>>> tp_complex_3d_ar;
+      tp_complex_3d_ar = std::vector<std::vector<std::vector<std::complex<local_scalar_t__>>>>(N, std::vector<std::vector<std::complex<local_scalar_t__>>>(M, std::vector<std::complex<local_scalar_t__>>(K, DUMMY_VAR__)));
+      
+      std::complex<local_scalar_t__> tp_complex;
+      tp_complex = DUMMY_VAR__;
+      
+      current_statement__ = 12;
+      assign(tp_complex_1d_ar, p_complex_1d_ar,
+        "assigning variable tp_complex_1d_ar");
+      current_statement__ = 13;
+      assign(tp_complex_3d_ar, p_complex_3d_ar,
+        "assigning variable tp_complex_3d_ar");
+      current_statement__ = 14;
+      tp_complex = (p_complex * p_complex);
+      current_statement__ = 15;
+      tp_complex = (p_complex / p_complex);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
       // Next line prevents compiler griping about no return
@@ -1609,9 +2103,100 @@ class mother_complex_model final : public model_base_crtp<mother_complex_model> 
     (void) function__;  // suppress unused var warning
     
     try {
+      std::complex<double> p_complex;
+      p_complex = std::numeric_limits<double>::quiet_NaN();
+      
+      current_statement__ = 1;
+      p_complex = in__.template read<std::complex<local_scalar_t__>>();
+      std::complex<double> p_upper;
+      p_upper = std::numeric_limits<double>::quiet_NaN();
+      
+      current_statement__ = 2;
+      p_upper = in__.template read<std::complex<local_scalar_t__>>();
+      std::complex<double> p_lower;
+      p_lower = std::numeric_limits<double>::quiet_NaN();
+      
+      current_statement__ = 3;
+      p_lower = in__.template read<std::complex<local_scalar_t__>>();
+      std::vector<std::complex<double>> offset_multiplier;
+      offset_multiplier = std::vector<std::complex<double>>(5, std::numeric_limits<double>::quiet_NaN());
+      
+      current_statement__ = 4;
+      offset_multiplier = in__.template read<std::vector<std::complex<local_scalar_t__>>>(
+                            5);
+      std::vector<std::complex<double>> no_offset_multiplier;
+      no_offset_multiplier = std::vector<std::complex<double>>(5, std::numeric_limits<double>::quiet_NaN());
+      
+      current_statement__ = 5;
+      no_offset_multiplier = in__.template read<std::vector<std::complex<local_scalar_t__>>>(
+                               5);
+      std::vector<std::complex<double>> offset_no_multiplier;
+      offset_no_multiplier = std::vector<std::complex<double>>(5, std::numeric_limits<double>::quiet_NaN());
+      
+      current_statement__ = 6;
+      offset_no_multiplier = in__.template read<std::vector<std::complex<local_scalar_t__>>>(
+                               5);
+      std::vector<std::complex<double>> p_complex_1d_ar;
+      p_complex_1d_ar = std::vector<std::complex<double>>(N, std::numeric_limits<double>::quiet_NaN());
+      
+      current_statement__ = 7;
+      p_complex_1d_ar = in__.template read<std::vector<std::complex<local_scalar_t__>>>(
+                          N);
+      std::vector<std::vector<std::vector<std::complex<double>>>> p_complex_3d_ar;
+      p_complex_3d_ar = std::vector<std::vector<std::vector<std::complex<double>>>>(N, std::vector<std::vector<std::complex<double>>>(M, std::vector<std::complex<double>>(K, std::numeric_limits<double>::quiet_NaN())));
+      
+      current_statement__ = 8;
+      p_complex_3d_ar = in__.template read<std::vector<std::vector<std::vector<std::complex<local_scalar_t__>>>>>(
+                          N, M, K);
+      std::vector<std::complex<double>> tp_complex_1d_ar;
+      tp_complex_1d_ar = std::vector<std::complex<double>>(N, std::numeric_limits<double>::quiet_NaN());
+      
+      std::vector<std::vector<std::vector<std::complex<double>>>> tp_complex_3d_ar;
+      tp_complex_3d_ar = std::vector<std::vector<std::vector<std::complex<double>>>>(N, std::vector<std::vector<std::complex<double>>>(M, std::vector<std::complex<double>>(K, std::numeric_limits<double>::quiet_NaN())));
+      
+      std::complex<double> tp_complex;
+      tp_complex = std::numeric_limits<double>::quiet_NaN();
+      
+      vars__.emplace_back(p_complex);
+      vars__.emplace_back(p_upper);
+      vars__.emplace_back(p_lower);
+      for (int sym1__ = 1; sym1__ <= 5; ++sym1__) {
+        vars__.emplace_back(offset_multiplier[(sym1__ - 1)]);}
+      for (int sym1__ = 1; sym1__ <= 5; ++sym1__) {
+        vars__.emplace_back(no_offset_multiplier[(sym1__ - 1)]);}
+      for (int sym1__ = 1; sym1__ <= 5; ++sym1__) {
+        vars__.emplace_back(offset_no_multiplier[(sym1__ - 1)]);}
+      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
+        vars__.emplace_back(p_complex_1d_ar[(sym1__ - 1)]);}
+      for (int sym1__ = 1; sym1__ <= K; ++sym1__) {
+        for (int sym2__ = 1; sym2__ <= M; ++sym2__) {
+          for (int sym3__ = 1; sym3__ <= N; ++sym3__) {
+            vars__.emplace_back(
+              p_complex_3d_ar[(sym3__ - 1)][(sym2__ - 1)][(sym1__ - 1)]);}}}
       if (logical_negation((primitive_value(emit_transformed_parameters__) ||
             primitive_value(emit_generated_quantities__)))) {
         return ;
+      } 
+      current_statement__ = 12;
+      assign(tp_complex_1d_ar, p_complex_1d_ar,
+        "assigning variable tp_complex_1d_ar");
+      current_statement__ = 13;
+      assign(tp_complex_3d_ar, p_complex_3d_ar,
+        "assigning variable tp_complex_3d_ar");
+      current_statement__ = 14;
+      tp_complex = (p_complex * p_complex);
+      current_statement__ = 15;
+      tp_complex = (p_complex / p_complex);
+      if (emit_transformed_parameters__) {
+        for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
+          vars__.emplace_back(tp_complex_1d_ar[(sym1__ - 1)]);}
+        for (int sym1__ = 1; sym1__ <= K; ++sym1__) {
+          for (int sym2__ = 1; sym2__ <= M; ++sym2__) {
+            for (int sym3__ = 1; sym3__ <= N; ++sym3__) {
+              vars__.emplace_back(
+                tp_complex_3d_ar[(sym3__ - 1)][(sym2__ - 1)][(sym1__ - 1)]);}
+          }}
+        vars__.emplace_back(tp_complex);
       } 
       if (logical_negation(emit_generated_quantities__)) {
         return ;
@@ -1639,6 +2224,83 @@ class mother_complex_model final : public model_base_crtp<mother_complex_model> 
       pos__ = std::numeric_limits<int>::min();
       
       pos__ = 1;
+      std::complex<double> p_complex;
+      p_complex = std::numeric_limits<double>::quiet_NaN();
+      
+      current_statement__ = 1;
+      assign(p_complex, context__.vals_r("p_complex")[(1 - 1)],
+        "assigning variable p_complex");
+      std::complex<double> p_upper;
+      p_upper = std::numeric_limits<double>::quiet_NaN();
+      
+      current_statement__ = 2;
+      assign(p_upper, context__.vals_r("p_upper")[(1 - 1)],
+        "assigning variable p_upper");
+      std::complex<double> p_lower;
+      p_lower = std::numeric_limits<double>::quiet_NaN();
+      
+      current_statement__ = 3;
+      assign(p_lower, context__.vals_r("p_lower")[(1 - 1)],
+        "assigning variable p_lower");
+      std::vector<std::complex<double>> offset_multiplier;
+      offset_multiplier = std::vector<std::complex<double>>(5, std::numeric_limits<double>::quiet_NaN());
+      
+      current_statement__ = 4;
+      offset_multiplier = context__.vals_r("offset_multiplier");
+      std::vector<std::complex<double>> no_offset_multiplier;
+      no_offset_multiplier = std::vector<std::complex<double>>(5, std::numeric_limits<double>::quiet_NaN());
+      
+      current_statement__ = 5;
+      no_offset_multiplier = context__.vals_r("no_offset_multiplier");
+      std::vector<std::complex<double>> offset_no_multiplier;
+      offset_no_multiplier = std::vector<std::complex<double>>(5, std::numeric_limits<double>::quiet_NaN());
+      
+      current_statement__ = 6;
+      offset_no_multiplier = context__.vals_r("offset_no_multiplier");
+      std::vector<std::complex<double>> p_complex_1d_ar;
+      p_complex_1d_ar = std::vector<std::complex<double>>(N, std::numeric_limits<double>::quiet_NaN());
+      
+      current_statement__ = 7;
+      p_complex_1d_ar = context__.vals_r("p_complex_1d_ar");
+      std::vector<std::vector<std::vector<std::complex<double>>>> p_complex_3d_ar;
+      p_complex_3d_ar = std::vector<std::vector<std::vector<std::complex<double>>>>(N, std::vector<std::vector<std::complex<double>>>(M, std::vector<std::complex<double>>(K, std::numeric_limits<double>::quiet_NaN())));
+      
+      {
+        std::vector<std::complex<local_scalar_t__>> p_complex_3d_ar_flat__;
+        current_statement__ = 8;
+        p_complex_3d_ar_flat__ = context__.vals_r("p_complex_3d_ar");
+        current_statement__ = 8;
+        pos__ = 1;
+        current_statement__ = 8;
+        for (int sym1__ = 1; sym1__ <= K; ++sym1__) {
+          current_statement__ = 8;
+          for (int sym2__ = 1; sym2__ <= M; ++sym2__) {
+            current_statement__ = 8;
+            for (int sym3__ = 1; sym3__ <= N; ++sym3__) {
+              current_statement__ = 8;
+              assign(p_complex_3d_ar, p_complex_3d_ar_flat__[(pos__ - 1)],
+                "assigning variable p_complex_3d_ar", index_uni(sym3__),
+                                                        index_uni(sym2__),
+                                                        index_uni(sym1__));
+              current_statement__ = 8;
+              pos__ = (pos__ + 1);}}}
+      }
+      vars__.emplace_back(p_complex);
+      vars__.emplace_back(p_upper);
+      vars__.emplace_back(p_lower);
+      for (int sym1__ = 1; sym1__ <= 5; ++sym1__) {
+        vars__.emplace_back(offset_multiplier[(sym1__ - 1)]);}
+      for (int sym1__ = 1; sym1__ <= 5; ++sym1__) {
+        vars__.emplace_back(no_offset_multiplier[(sym1__ - 1)]);}
+      for (int sym1__ = 1; sym1__ <= 5; ++sym1__) {
+        vars__.emplace_back(offset_no_multiplier[(sym1__ - 1)]);}
+      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
+        vars__.emplace_back(p_complex_1d_ar[(sym1__ - 1)]);}
+      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
+        for (int sym2__ = 1; sym2__ <= M; ++sym2__) {
+          for (int sym3__ = 1; sym3__ <= K; ++sym3__) {
+            vars__.emplace_back(
+              p_complex_3d_ar[(sym1__ - 1)][(sym2__ - 1)][(sym3__ - 1)]);}}}
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
       // Next line prevents compiler griping about no return
@@ -1649,11 +2311,46 @@ class mother_complex_model final : public model_base_crtp<mother_complex_model> 
   inline void get_param_names(std::vector<std::string>& names__) const {
     
     names__.clear();
-    
+    names__.emplace_back("p_complex");
+    names__.emplace_back("p_upper");
+    names__.emplace_back("p_lower");
+    names__.emplace_back("offset_multiplier");
+    names__.emplace_back("no_offset_multiplier");
+    names__.emplace_back("offset_no_multiplier");
+    names__.emplace_back("p_complex_1d_ar");
+    names__.emplace_back("p_complex_3d_ar");
+    names__.emplace_back("tp_complex_1d_ar");
+    names__.emplace_back("tp_complex_3d_ar");
+    names__.emplace_back("tp_complex");
     } // get_param_names() 
     
   inline void get_dims(std::vector<std::vector<size_t>>& dimss__) const {
     dimss__.clear();
+    dimss__.emplace_back(std::vector<size_t>{});
+    
+    dimss__.emplace_back(std::vector<size_t>{});
+    
+    dimss__.emplace_back(std::vector<size_t>{});
+    
+    dimss__.emplace_back(std::vector<size_t>{static_cast<size_t>(5)});
+    
+    dimss__.emplace_back(std::vector<size_t>{static_cast<size_t>(5)});
+    
+    dimss__.emplace_back(std::vector<size_t>{static_cast<size_t>(5)});
+    
+    dimss__.emplace_back(std::vector<size_t>{static_cast<size_t>(N)});
+    
+    dimss__.emplace_back(std::vector<size_t>{static_cast<size_t>(N),
+                                             static_cast<size_t>(M),
+                                             static_cast<size_t>(K)});
+    
+    dimss__.emplace_back(std::vector<size_t>{static_cast<size_t>(N)});
+    
+    dimss__.emplace_back(std::vector<size_t>{static_cast<size_t>(N),
+                                             static_cast<size_t>(M),
+                                             static_cast<size_t>(K)});
+    
+    dimss__.emplace_back(std::vector<size_t>{});
     
     } // get_dims() 
     
@@ -1663,9 +2360,51 @@ class mother_complex_model final : public model_base_crtp<mother_complex_model> 
                                       bool emit_generated_quantities__ = true) const
     final {
     
-    
+    param_names__.emplace_back(std::string() + "p_complex");
+    param_names__.emplace_back(std::string() + "p_upper");
+    param_names__.emplace_back(std::string() + "p_lower");
+    for (int sym1__ = 1; sym1__ <= 5; ++sym1__) {
+      {
+        param_names__.emplace_back(std::string() + "offset_multiplier" + '.' + std::to_string(sym1__));
+      }}
+    for (int sym1__ = 1; sym1__ <= 5; ++sym1__) {
+      {
+        param_names__.emplace_back(std::string() + "no_offset_multiplier" + '.' + std::to_string(sym1__));
+      }}
+    for (int sym1__ = 1; sym1__ <= 5; ++sym1__) {
+      {
+        param_names__.emplace_back(std::string() + "offset_no_multiplier" + '.' + std::to_string(sym1__));
+      }}
+    for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
+      {
+        param_names__.emplace_back(std::string() + "p_complex_1d_ar" + '.' + std::to_string(sym1__));
+      }}
+    for (int sym1__ = 1; sym1__ <= K; ++sym1__) {
+      {
+        for (int sym2__ = 1; sym2__ <= M; ++sym2__) {
+          {
+            for (int sym3__ = 1; sym3__ <= N; ++sym3__) {
+              {
+                param_names__.emplace_back(std::string() + "p_complex_3d_ar" + '.' + std::to_string(sym3__) + '.' + std::to_string(sym2__) + '.' + std::to_string(sym1__));
+              }}
+          }}
+      }}
     if (emit_transformed_parameters__) {
-      
+      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "tp_complex_1d_ar" + '.' + std::to_string(sym1__));
+        }}
+      for (int sym1__ = 1; sym1__ <= K; ++sym1__) {
+        {
+          for (int sym2__ = 1; sym2__ <= M; ++sym2__) {
+            {
+              for (int sym3__ = 1; sym3__ <= N; ++sym3__) {
+                {
+                  param_names__.emplace_back(std::string() + "tp_complex_3d_ar" + '.' + std::to_string(sym3__) + '.' + std::to_string(sym2__) + '.' + std::to_string(sym1__));
+                }}
+            }}
+        }}
+      param_names__.emplace_back(std::string() + "tp_complex");
     }
     
     if (emit_generated_quantities__) {
@@ -1680,9 +2419,51 @@ class mother_complex_model final : public model_base_crtp<mother_complex_model> 
                                         bool emit_generated_quantities__ = true) const
     final {
     
-    
+    param_names__.emplace_back(std::string() + "p_complex");
+    param_names__.emplace_back(std::string() + "p_upper");
+    param_names__.emplace_back(std::string() + "p_lower");
+    for (int sym1__ = 1; sym1__ <= 5; ++sym1__) {
+      {
+        param_names__.emplace_back(std::string() + "offset_multiplier" + '.' + std::to_string(sym1__));
+      }}
+    for (int sym1__ = 1; sym1__ <= 5; ++sym1__) {
+      {
+        param_names__.emplace_back(std::string() + "no_offset_multiplier" + '.' + std::to_string(sym1__));
+      }}
+    for (int sym1__ = 1; sym1__ <= 5; ++sym1__) {
+      {
+        param_names__.emplace_back(std::string() + "offset_no_multiplier" + '.' + std::to_string(sym1__));
+      }}
+    for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
+      {
+        param_names__.emplace_back(std::string() + "p_complex_1d_ar" + '.' + std::to_string(sym1__));
+      }}
+    for (int sym1__ = 1; sym1__ <= K; ++sym1__) {
+      {
+        for (int sym2__ = 1; sym2__ <= M; ++sym2__) {
+          {
+            for (int sym3__ = 1; sym3__ <= N; ++sym3__) {
+              {
+                param_names__.emplace_back(std::string() + "p_complex_3d_ar" + '.' + std::to_string(sym3__) + '.' + std::to_string(sym2__) + '.' + std::to_string(sym1__));
+              }}
+          }}
+      }}
     if (emit_transformed_parameters__) {
-      
+      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "tp_complex_1d_ar" + '.' + std::to_string(sym1__));
+        }}
+      for (int sym1__ = 1; sym1__ <= K; ++sym1__) {
+        {
+          for (int sym2__ = 1; sym2__ <= M; ++sym2__) {
+            {
+              for (int sym3__ = 1; sym3__ <= N; ++sym3__) {
+                {
+                  param_names__.emplace_back(std::string() + "tp_complex_3d_ar" + '.' + std::to_string(sym3__) + '.' + std::to_string(sym2__) + '.' + std::to_string(sym1__));
+                }}
+            }}
+        }}
+      param_names__.emplace_back(std::string() + "tp_complex");
     }
     
     if (emit_generated_quantities__) {
@@ -1693,13 +2474,13 @@ class mother_complex_model final : public model_base_crtp<mother_complex_model> 
     
   inline std::string get_constrained_sizedtypes() const {
     std::stringstream s__;
-    s__ << "[]";
+    s__ << "[{\"name\":\"p_complex\",\"type\":{\"name\":\"complex\"},\"block\":\"parameters\"},{\"name\":\"p_upper\",\"type\":{\"name\":\"complex\"},\"block\":\"parameters\"},{\"name\":\"p_lower\",\"type\":{\"name\":\"complex\"},\"block\":\"parameters\"},{\"name\":\"offset_multiplier\",\"type\":{\"name\":\"array\",\"length\":" << 5 << ",\"element_type\":{\"name\":\"complex\"}},\"block\":\"parameters\"},{\"name\":\"no_offset_multiplier\",\"type\":{\"name\":\"array\",\"length\":" << 5 << ",\"element_type\":{\"name\":\"complex\"}},\"block\":\"parameters\"},{\"name\":\"offset_no_multiplier\",\"type\":{\"name\":\"array\",\"length\":" << 5 << ",\"element_type\":{\"name\":\"complex\"}},\"block\":\"parameters\"},{\"name\":\"p_complex_1d_ar\",\"type\":{\"name\":\"array\",\"length\":" << N << ",\"element_type\":{\"name\":\"complex\"}},\"block\":\"parameters\"},{\"name\":\"p_complex_3d_ar\",\"type\":{\"name\":\"array\",\"length\":" << N << ",\"element_type\":{\"name\":\"array\",\"length\":" << M << ",\"element_type\":{\"name\":\"array\",\"length\":" << K << ",\"element_type\":{\"name\":\"complex\"}}}},\"block\":\"parameters\"},{\"name\":\"tp_complex_1d_ar\",\"type\":{\"name\":\"array\",\"length\":" << N << ",\"element_type\":{\"name\":\"complex\"}},\"block\":\"transformed_parameters\"},{\"name\":\"tp_complex_3d_ar\",\"type\":{\"name\":\"array\",\"length\":" << N << ",\"element_type\":{\"name\":\"array\",\"length\":" << M << ",\"element_type\":{\"name\":\"array\",\"length\":" << K << ",\"element_type\":{\"name\":\"complex\"}}}},\"block\":\"transformed_parameters\"},{\"name\":\"tp_complex\",\"type\":{\"name\":\"complex\"},\"block\":\"transformed_parameters\"}]";
     return s__.str();
     } // get_constrained_sizedtypes() 
     
   inline std::string get_unconstrained_sizedtypes() const {
     std::stringstream s__;
-    s__ << "[]";
+    s__ << "[{\"name\":\"p_complex\",\"type\":{\"name\":\"complex\"},\"block\":\"parameters\"},{\"name\":\"p_upper\",\"type\":{\"name\":\"complex\"},\"block\":\"parameters\"},{\"name\":\"p_lower\",\"type\":{\"name\":\"complex\"},\"block\":\"parameters\"},{\"name\":\"offset_multiplier\",\"type\":{\"name\":\"array\",\"length\":" << 5 << ",\"element_type\":{\"name\":\"complex\"}},\"block\":\"parameters\"},{\"name\":\"no_offset_multiplier\",\"type\":{\"name\":\"array\",\"length\":" << 5 << ",\"element_type\":{\"name\":\"complex\"}},\"block\":\"parameters\"},{\"name\":\"offset_no_multiplier\",\"type\":{\"name\":\"array\",\"length\":" << 5 << ",\"element_type\":{\"name\":\"complex\"}},\"block\":\"parameters\"},{\"name\":\"p_complex_1d_ar\",\"type\":{\"name\":\"array\",\"length\":" << N << ",\"element_type\":{\"name\":\"complex\"}},\"block\":\"parameters\"},{\"name\":\"p_complex_3d_ar\",\"type\":{\"name\":\"array\",\"length\":" << N << ",\"element_type\":{\"name\":\"array\",\"length\":" << M << ",\"element_type\":{\"name\":\"array\",\"length\":" << K << ",\"element_type\":{\"name\":\"complex\"}}}},\"block\":\"parameters\"},{\"name\":\"tp_complex_1d_ar\",\"type\":{\"name\":\"array\",\"length\":" << N << ",\"element_type\":{\"name\":\"complex\"}},\"block\":\"transformed_parameters\"},{\"name\":\"tp_complex_3d_ar\",\"type\":{\"name\":\"array\",\"length\":" << N << ",\"element_type\":{\"name\":\"array\",\"length\":" << M << ",\"element_type\":{\"name\":\"array\",\"length\":" << K << ",\"element_type\":{\"name\":\"complex\"}}}},\"block\":\"transformed_parameters\"},{\"name\":\"tp_complex\",\"type\":{\"name\":\"complex\"},\"block\":\"transformed_parameters\"}]";
     return s__.str();
     } // get_unconstrained_sizedtypes() 
     

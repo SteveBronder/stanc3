@@ -47,9 +47,7 @@ let rec expand_arg = function
 type fkind = Lpmf | Lpdf | Rng | Cdf | Ccdf | UnaryVectorized
 
 let is_primitive = function
-  | UnsizedType.UReal -> true
-  | UnsizedType.UComplex -> true
-  | UInt -> true
+  | UnsizedType.UReal | UComplex | UInt -> true
   | _ -> false
 
 (** The signatures hash table *)

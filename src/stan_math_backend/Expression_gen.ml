@@ -78,10 +78,10 @@ let promote_adtype =
 let promote_unsizedtype es =
   let rec fold_type accum mtype =
     match (accum, mtype) with
-    | UnsizedType.UReal, _ -> UnsizedType.UReal
-    | _, UnsizedType.UReal -> UReal
     | UnsizedType.UComplex, _ -> UnsizedType.UComplex
-    | _, UnsizedType.UComplex -> UComplex
+    | _, UnsizedType.UComplex -> UnsizedType.UComplex
+    | UReal, _ -> UReal
+    | _, UReal -> UReal
     | UArray t1, UArray t2 -> UArray (fold_type t1 t2)
     | _, mtype -> mtype
   in

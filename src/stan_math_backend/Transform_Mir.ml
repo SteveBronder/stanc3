@@ -60,7 +60,7 @@ let rec switch_expr_to_opencl available_cl_vars (Expr.Fixed.({pattern; _}) as e)
     match (pattern, type_) with
     | Var s, _ when is_avail s ->
         Expr.Fixed.{e with pattern= Var (s ^ opencl_suffix)}
-    | _, UnsizedType.(UInt | UReal) -> e
+    | _, UnsizedType.(UInt | UReal | UComplex) -> e
     | _, _ -> to_matrix_cl e
   in
   let check_type args (i, ad, t) =

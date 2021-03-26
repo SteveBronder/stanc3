@@ -13821,7 +13821,7 @@ class mother_complex_model final : public model_base_crtp<mother_complex_model> 
       J = std::numeric_limits<double>::quiet_NaN();
       
       current_statement__ = 19;
-      assign(J, context__.vals_r("J")[(1 - 1)], "assigning variable J");
+      J = context__.vals_r("J")[(1 - 1)];
       current_statement__ = 20;
       validate_non_negative_index("d_complex_1d_ar", "N", N);
       current_statement__ = 21;
@@ -13935,8 +13935,7 @@ class mother_complex_model final : public model_base_crtp<mother_complex_model> 
       d_complex = std::numeric_limits<double>::quiet_NaN();
       
       current_statement__ = 33;
-      assign(d_complex, context__.vals_r("d_complex")[(1 - 1)],
-        "assigning variable d_complex");
+      d_complex = context__.vals_r("d_complex")[(1 - 1)];
       current_statement__ = 34;
       validate_non_negative_index("d_complex_array", "d_int", d_int);
       current_statement__ = 35;
@@ -14028,7 +14027,7 @@ class mother_complex_model final : public model_base_crtp<mother_complex_model> 
       td_c = std::numeric_limits<double>::quiet_NaN();
       
       current_statement__ = 47;
-      assign(td_c, foo_bar1(td_b, pstream__), "assigning variable td_c");
+      td_c = foo_bar1(td_b, pstream__);
       current_statement__ = 48;
       dat = std::vector<std::complex<double>>(0, std::numeric_limits<double>::quiet_NaN());
       
@@ -14511,20 +14510,17 @@ class mother_complex_model final : public model_base_crtp<mother_complex_model> 
       p_complex = std::numeric_limits<double>::quiet_NaN();
       
       current_statement__ = 1;
-      assign(p_complex, context__.vals_r("p_complex")[(1 - 1)],
-        "assigning variable p_complex");
+      p_complex = context__.vals_r("p_complex")[(1 - 1)];
       std::complex<double> p_upper;
       p_upper = std::numeric_limits<double>::quiet_NaN();
       
       current_statement__ = 2;
-      assign(p_upper, context__.vals_r("p_upper")[(1 - 1)],
-        "assigning variable p_upper");
+      p_upper = context__.vals_r("p_upper")[(1 - 1)];
       std::complex<double> p_lower;
       p_lower = std::numeric_limits<double>::quiet_NaN();
       
       current_statement__ = 3;
-      assign(p_lower, context__.vals_r("p_lower")[(1 - 1)],
-        "assigning variable p_lower");
+      p_lower = context__.vals_r("p_lower")[(1 - 1)];
       std::vector<std::complex<double>> offset_multiplier;
       offset_multiplier = std::vector<std::complex<double>>(5, std::numeric_limits<double>::quiet_NaN());
       

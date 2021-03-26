@@ -67,7 +67,8 @@ let rec integer_el_type = function
 let pp_decl ppf (vident, ut, adtype) =
   let pp_type =
     match (Transform_Mir.is_opencl_var vident, ut) with
-    | _, UnsizedType.(UInt | UReal) | false, _ -> pp_unsizedtype_local
+    | _, UnsizedType.(UInt | UReal | UComplex) | false, _ ->
+        pp_unsizedtype_local
     | true, UArray UInt -> fun ppf _ -> pf ppf "matrix_cl<int>"
     | true, _ -> fun ppf _ -> pf ppf "matrix_cl<double>"
   in
@@ -115,10 +116,12 @@ let rec pp_statement (ppf : Format.formatter)
       pf ppf "@[<hov 4>%s = %a;@]" vident pp_expr rhs
   | Assignment
       ((vident, _, []), ({meta= Expr.Typed.Meta.({type_= UInt; _}); _} as rhs))
-   |Assignment ((vident, _, []), ({meta= {type_= UReal; _}; _} as rhs)) ->
+   |Assignment ((vident, _, []), ({meta= {type_= UReal; _}; _} as rhs))
+   |Assignment ((vident, _, []), ({meta= {type_= UComplex; _}; _} as rhs)) ->
       pf ppf "@[<hov 4>%s = %a;@]" vident pp_expr rhs
   | Assignment ((assignee, UInt, idcs), rhs)
    |Assignment ((assignee, UReal, idcs), rhs)
+   |Assignment ((assignee, UComplex, idcs), rhs)
     when List.for_all ~f:is_single_index idcs ->
       pf ppf "@[<hov 4>%a = %a;@]" pp_indexed_simple (assignee, idcs) pp_expr
         rhs

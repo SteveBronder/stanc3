@@ -30,7 +30,6 @@ let check_of_compatible_return_type rt1 srt2 =
       match (rt1, ret_type) with
       | ReturnType UReal, ReturnType UInt -> true
       | ReturnType UComplex, ReturnType UInt -> true
-      | ReturnType UComplex, ReturnType UComplex -> true
       | ReturnType UComplex, ReturnType UReal -> true
       | ReturnType rt1, ReturnType rt2 -> rt1 = rt2
       | _ -> false )
