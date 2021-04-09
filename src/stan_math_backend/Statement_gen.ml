@@ -21,7 +21,7 @@ let rec contains_eigen (ut : UnsizedType.t) : bool =
   | UMatrix | URowVector | UVector -> true
   | UInt | UReal | UMathLibraryFunction | UFun _ -> false
 
-let pp_set_size ppf (decl_id, st, adtype, (needs_filled : bool)) =
+let pp_set_size ppf (decl_id, st, adtype, (needs_setup : bool)) =
   (* TODO: generate optimal adtypes for expressions and declarations *)
   let real_nan =
     match adtype with
@@ -40,11 +40,13 @@ let pp_set_size ppf (decl_id, st, adtype, (needs_filled : bool)) =
     | SArray (t, d) -> pf ppf "%a(%a, %a)" pp_st st pp_expr d pp_size_ctor t
   in
   let print_fill ppf st =
-    match (contains_eigen (SizedType.to_unsized st), needs_filled) with
-    | true, true -> pf ppf "stan::math::fill(%s, %s);" decl_id real_nan
+    match (contains_eigen (SizedType.to_unsized st), needs_setup) with
+    | true, true | true, false -> pf ppf "stan::math::fill(%s, %s);" decl_id real_nan
     | _, _ -> ()
   in
-  pf ppf "@[<hov 0>%s = %a;@,%a @]@," decl_id pp_size_ctor st print_fill st
+  if needs_setup then
+    pf ppf "@[<hov 0>%s = %a;@,%a @]@," decl_id pp_size_ctor st print_fill st
+  else ()
 
 let%expect_test "set size mat array" =
   let int = Expr.Helpers.int in
@@ -54,9 +56,7 @@ let%expect_test "set size mat array" =
     , DataOnly
     , false )
   |> print_endline ;
-  [%expect
-    {|
-      d = std::vector<std::vector<Eigen::Matrix<double, -1, -1>>>(5, std::vector<Eigen::Matrix<double, -1, -1>>(4, Eigen::Matrix<double, -1, -1>(2, 3))); |}]
+  [%expect {| |}]
 
 (** [pp_for_loop ppf (loopvar, lower, upper, pp_body, body)] tries to
     pretty print a for-loop from lower to upper given some loopvar.*)
@@ -79,14 +79,15 @@ let pp_decl ppf (vident, ut, adtype) =
   in
   pf ppf "%a %s;" pp_type (adtype, ut) vident
 
-let pp_sized_decl ppf (vident, st, adtype) =
+let pp_sized_decl ppf (vident, st, adtype, needs_filled) =
   pf ppf "%a@,%a" pp_decl
     (vident, SizedType.to_unsized st, adtype)
-    pp_set_size (vident, st, adtype, true)
+    pp_set_size
+    (vident, st, adtype, needs_filled)
 
-let pp_possibly_sized_decl ppf (vident, pst, adtype) =
+let pp_possibly_sized_decl ppf (vident, pst, adtype, is_transformed) =
   match pst with
-  | Type.Sized st -> pp_sized_decl ppf (vident, st, adtype)
+  | Type.Sized st -> pp_sized_decl ppf (vident, st, adtype, is_transformed)
   | Unsized ut -> pp_decl ppf (vident, ut, adtype)
 
 let math_fn_translations = function
@@ -206,8 +207,9 @@ let rec pp_statement (ppf : Format.formatter) Stmt.Fixed.({pattern; meta}) =
   | Profile (name, ls) -> pp_profile ppf (pp_stmt_list, name, ls)
   | Block ls -> pp_block ppf (pp_stmt_list, ls)
   | SList ls -> pp_stmt_list ppf ls
-  | Decl {decl_adtype; decl_id; decl_type} ->
-      pp_possibly_sized_decl ppf (decl_id, decl_type, decl_adtype)
+  | Decl {decl_adtype; decl_id; decl_type; is_transformed} ->
+      pp_possibly_sized_decl ppf
+        (decl_id, decl_type, decl_adtype, is_transformed)
 
 and pp_block_s ppf body =
   match body.pattern with

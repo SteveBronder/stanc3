@@ -81,13 +81,15 @@ let slist_concat_no_loc l stmt =
 
 let replace_fresh_local_vars s' =
   let f m = function
-    | Stmt.Fixed.Pattern.Decl {decl_adtype; decl_type; decl_id} ->
+    | Stmt.Fixed.Pattern.Decl {decl_adtype; decl_type; decl_id; is_transformed}
+      ->
         let new_name =
           match Map.Poly.find m decl_id with
           | Some existing -> existing
           | None -> Gensym.generate ~prefix:"inline_" ()
         in
-        ( Stmt.Fixed.Pattern.Decl {decl_adtype; decl_id= new_name; decl_type}
+        ( Stmt.Fixed.Pattern.Decl
+            {decl_adtype; decl_id= new_name; decl_type; is_transformed}
         , Map.Poly.set m ~key:decl_id ~data:new_name )
     | Stmt.Fixed.Pattern.For {loopvar; lower; upper; body} ->
         let new_name =
@@ -179,7 +181,10 @@ let handle_early_returns opt_var b =
     [ Stmt.Fixed.
         { pattern=
             Decl
-              {decl_adtype= DataOnly; decl_id= returned; decl_type= Sized SInt}
+              { decl_adtype= DataOnly
+              ; decl_id= returned
+              ; decl_type= Sized SInt
+              ; is_transformed= true }
         ; meta= Location_span.empty }
     ; Stmt.Fixed.
         { pattern=
@@ -254,7 +259,8 @@ let rec inline_function_expression propto adt fim
                 ( [ Stmt.Fixed.Pattern.Decl
                       { decl_adtype= adt
                       ; decl_id= x
-                      ; decl_type= Option.value_exn rt } ]
+                      ; decl_type= Option.value_exn rt
+                      ; is_transformed= true } ]
                   (* We should minimize the code that's having its variables
                    replaced to avoid conflict with the (two) new dummy
                    variables introduced by inlining *)
@@ -879,7 +885,8 @@ let lazy_code_motion (mir : Program.Typed.t) =
                 Pattern.Decl
                   { decl_adtype= Expr.Typed.adlevel_of key
                   ; decl_id= data
-                  ; decl_type= Type.Unsized (Expr.Typed.type_of key) }
+                  ; decl_type= Type.Unsized (Expr.Typed.type_of key)
+                  ; is_transformed= true }
             ; meta= Location_span.empty }
           :: accum )
     in
@@ -1050,12 +1057,12 @@ let optimize_ad_levels (mir : Program.Typed.t) =
           (fun x -> x)
           stmt
       with
-      | Decl {decl_id; decl_type; _}
+      | Decl {decl_id; decl_type; is_transformed; _}
         when Set.mem autodiffable_variables decl_id ->
           Stmt.Fixed.Pattern.Decl
-            {decl_adtype= AutoDiffable; decl_id; decl_type}
-      | Decl {decl_id; decl_type; _} ->
-          Decl {decl_adtype= DataOnly; decl_id; decl_type}
+            {decl_adtype= AutoDiffable; decl_id; decl_type; is_transformed}
+      | Decl {decl_id; decl_type; is_transformed; _} ->
+          Decl {decl_adtype= DataOnly; decl_id; decl_type; is_transformed}
       | s -> s
     in
     let optimize_ad_levels_stmt =

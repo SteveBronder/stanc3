@@ -128,7 +128,10 @@ let data_read smeta (decl_id, st) =
       let decl, assign, flat_var =
         let decl_id = decl_id ^ "_flat__" in
         ( Stmt.Fixed.Pattern.Decl
-            {decl_adtype= AutoDiffable; decl_id; decl_type= Unsized flat_type}
+            { decl_adtype= AutoDiffable
+            ; decl_id
+            ; decl_type= Unsized flat_type
+            ; is_transformed= true }
           |> swrap
         , Assignment ((decl_id, flat_type, []), readfnapp decl_var) |> swrap
         , { Expr.Fixed.pattern= Var decl_id
@@ -523,7 +526,10 @@ let trans_prog (p : Program.Typed.t) =
   let p = Program.map Fn.id map_fn_names p in
   let init_pos =
     [ Stmt.Fixed.Pattern.Decl
-        {decl_adtype= DataOnly; decl_id= pos; decl_type= Sized SInt}
+        { decl_adtype= DataOnly
+        ; decl_id= pos
+        ; decl_type= Sized SInt
+        ; is_transformed= true }
     ; Assignment ((pos, UInt, []), Expr.Helpers.loop_bottom) ]
     |> List.map ~f:(fun pattern ->
            Stmt.Fixed.{pattern; meta= Location_span.empty} )
@@ -647,7 +653,8 @@ let trans_prog (p : Program.Typed.t) =
                 Decl
                   { decl_adtype= DataOnly
                   ; decl_id= vident
-                  ; decl_type= Type.Unsized type_of_input_var }
+                  ; decl_type= Type.Unsized type_of_input_var
+                  ; is_transformed= true }
             ; meta= Location_span.empty }
         ; { pattern=
               Assignment

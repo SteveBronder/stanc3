@@ -384,7 +384,8 @@ let constrain_decl st dconstrain t decl_id decl_var smeta =
                       Decl
                         { decl_adtype= DataOnly
                         ; decl_id= decl_id ^ "_free__"
-                        ; decl_type= Sized (param_size t st) }
+                        ; decl_type= Sized (param_size t st)
+                        ; is_transformed= true }
                   ; meta= smeta } ]
             , decl_id ^ "_free__"
             , ut )
@@ -462,7 +463,9 @@ let trans_decl {dconstrain; dadlevel} smeta decl_type transform identifier
   in
   let decl =
     Stmt.
-      {Fixed.pattern= Decl {decl_adtype; decl_id; decl_type= dt}; meta= smeta}
+      { Fixed.pattern=
+          Decl {decl_adtype; decl_id; decl_type= dt; is_transformed= true}
+      ; meta= smeta }
   in
   let rhs_assignment =
     Option.map
@@ -618,7 +621,8 @@ let rec trans_stmt ud_dists (declc : decl_context) (ts : Ast.typed_statement) =
               Decl
                 { decl_adtype= Expr.Typed.adlevel_of iteratee'
                 ; decl_id= loopvar.name
-                ; decl_type= Unsized decl_type } }
+                ; decl_type= Unsized decl_type
+                ; is_transformed= true } }
       in
       let assignment var =
         Stmt.Fixed.
@@ -691,7 +695,11 @@ let trans_sizedtype_decl declc tr name =
         let decl_id = Fmt.strf "%s_%ddim__" name n in
         let decl =
           { Stmt.Fixed.pattern=
-              Decl {decl_type= Sized SInt; decl_id; decl_adtype= DataOnly}
+              Decl
+                { decl_type= Sized SInt
+                ; decl_id
+                ; decl_adtype= DataOnly
+                ; is_transformed= true }
           ; meta= e.meta.loc }
         in
         let assign =
@@ -776,9 +784,25 @@ let trans_block ud_dists declc block prog =
                   () }
         in
         let decl =
-          Stmt.
-            { Fixed.pattern= Decl {decl_adtype; decl_id; decl_type= Sized type_}
-            ; meta= smeta.loc }
+          match block with
+          | Program.Parameters ->
+              Stmt.
+                { Fixed.pattern=
+                    Decl
+                      { decl_adtype
+                      ; decl_id
+                      ; decl_type= Sized type_
+                      ; is_transformed= false }
+                ; meta= smeta.loc }
+          | TransformedParameters | GeneratedQuantities ->
+              Stmt.
+                { Fixed.pattern=
+                    Decl
+                      { decl_adtype
+                      ; decl_id
+                      ; decl_type= Sized type_
+                      ; is_transformed= true }
+                ; meta= smeta.loc }
         in
         let rhs_assignment =
           Option.map
