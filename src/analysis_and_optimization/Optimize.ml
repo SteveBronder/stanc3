@@ -805,6 +805,7 @@ let dead_code_elimination (mir : Program.Typed.t) =
   transform_program mir transform
 
 let partial_evaluation = Partial_evaluator.eval_prog
+let loop_reduction = Loop_reduction.eval_prog
 
 let lazy_code_motion (mir : Program.Typed.t) =
   (* TODO: clean up this code. It is not very pretty. *)
@@ -1078,6 +1079,7 @@ type optimization_settings =
   ; copy_propagation: bool
   ; dead_code_elimination: bool
   ; partial_evaluation: bool
+  ; loop_reduction: bool
   ; lazy_code_motion: bool
   ; optimize_ad_levels: bool }
 
@@ -1092,6 +1094,7 @@ let settings_const b =
   ; copy_propagation= b
   ; dead_code_elimination= b
   ; partial_evaluation= b
+  ; loop_reduction= b
   ; lazy_code_motion= b
   ; optimize_ad_levels= b }
 
@@ -1120,6 +1123,8 @@ let optimization_suite ?(settings = all_optimizations) mir =
     ; (expression_propagation, settings.expression_propagation)
       (* Matthjis: partial_evaluation < lazy_code_motion *)
     ; (partial_evaluation, settings.partial_evaluation)
+      (* Steve: Less Loops = Good *)
+      ; (loop_reduction, settings.loop_reduction)
       (* Book: Loop-invariant code motion *)
     ; (lazy_code_motion, settings.lazy_code_motion)
       (* Matthijs: lazy_code_motion < copy_propagation TODO: Check if this is necessary *)
