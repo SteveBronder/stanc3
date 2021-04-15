@@ -67,6 +67,7 @@ type optimization_settings =
   ; copy_propagation: bool
   ; dead_code_elimination: bool
   ; partial_evaluation: bool
+  ; loop_reduction: bool
   ; lazy_code_motion: bool
   ; optimize_ad_levels: bool }
 

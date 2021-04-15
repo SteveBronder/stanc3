@@ -1,7 +1,7 @@
 (* A partial evaluator for use in static analysis and optimization *)
 
 open Core_kernel
-open Mir_utils
+(*open Mir_utils*)
 open Middle
 
 let preserve_stability = false
@@ -79,7 +79,26 @@ let is_multi_index = function
   | Index.MultiIndex _ | Upfrom _ | Between _ | All -> true
   | Single _ -> false
 
-(** Query function expressions in expressions returning back a list of optionals 
+let is_single_index loopvar a =
+match a with
+| Index.MultiIndex _ | Upfrom _ | Between _ | All -> false
+| Single Expr.Fixed.{pattern= Var s; _} when s = loopvar ->  true
+| Single _ ->  false
+
+
+let get_lvalue_idx (loopvar, (_, _, c)) = 
+  let loopvar_checker = is_single_index loopvar in 
+  if List.for_all ~f:loopvar_checker c then 
+  true 
+  else 
+  false
+
+let is_single_loopvar_index (loopvar, idx_lvalue) = 
+    match get_lvalue_idx (loopvar, idx_lvalue) with
+    | _ -> true
+
+  
+    (** Query function expressions in expressions returning back a list of optionals 
  *    with each Some element holding the queried function types.
  * @param select A functor taking in a tuple of the same types as 
  *  those in `FunApp` and returning a subset of the `FunApp`'s types.
@@ -117,17 +136,23 @@ match pattern with
    [None]
  *)
 
-let really_zip_loop (_, _, _, stmt) =
-  stmt
+let really_zip_loop (loopvar, _, _, Stmt.Fixed.({pattern; meta}) ) =
+  match pattern with 
+  | Assignment (a, _) -> 
+  let a_loopvar_idx = is_single_loopvar_index (loopvar, a) in
+  let all_conditionals_satisfied = a_loopvar_idx in
+  if all_conditionals_satisfied then 
+  Stmt.Fixed.({pattern; meta})
+  else 
+  Stmt.Fixed.({pattern; meta})
+  | _ -> Stmt.Fixed.({pattern; meta})
 
 
-let zip_for_loop (loopvar, lower, upper, stmt) = 
-  let inner_zip Stmt.Fixed.({pattern; meta}) =
-    (match pattern with
+let zip_for_loop (loopvar, lower, upper, Stmt.Fixed.({pattern; meta})) = 
+    match pattern with
     | Block [a] -> 
       Stmt.Fixed.({pattern=Block [really_zip_loop (loopvar, lower, upper, a)]; meta})
-    | _ -> stmt)
-  in inner_zip stmt
+    | _ -> Stmt.Fixed.({pattern; meta})
 (** Query function expressions in statements returning back a list
  *   of optionals with the the elements of the list holding the 
  *   selected subset of function arguments.
@@ -171,5 +196,8 @@ let rec squish_stmt_loops stmt =
 in 
   inner_query stmt
 
-let eval_prog = Program.map squish_stmt_loops
+let eval_prog :
+  (Expr.Typed.t, Stmt.Located.t) Program.t
+-> (Expr.Typed.t, Stmt.Located.t) Program.t =
+Program.map Fn.id squish_stmt_loops
 
