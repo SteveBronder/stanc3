@@ -1,5 +1,8 @@
 (** The signatures of the Stan Math library, which are used for type checking *)
-open Core_kernel
+open Core
+
+let ( = ) = Stdlib.( = )
+let compare = Stdlib.compare
 
 (* The "dimensionality" (bad name?) is supposed to help us represent the
     vectorized nature of many Stan functions. It allows us to represent when
@@ -308,10 +311,9 @@ let is_stan_math_function_name name =
 
 let dist_name_suffix udf_names name =
   let is_udf_name s = List.exists ~f:(fun (n, _) -> n = s) udf_names in
+  let check_names sfx = (is_stan_math_function_name (name ^ sfx)) || (is_udf_name (name ^ sfx)) in
   match
-    Utils.distribution_suffices
-    |> List.filter ~f:(fun sfx ->
-           is_stan_math_function_name (name ^ sfx) || is_udf_name (name ^ sfx))
+    List.filter ~f:check_names) Utils.distribution_suffices
     |> List.hd
   with
   | Some hd -> hd
