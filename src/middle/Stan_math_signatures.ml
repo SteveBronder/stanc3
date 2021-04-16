@@ -311,7 +311,7 @@ let dist_name_suffix udf_names name =
   match
     Utils.distribution_suffices
     |> List.filter ~f:(fun sfx ->
-           is_stan_math_function_name (name ^ sfx) || is_udf_name (name ^ sfx)
+           is_stan_math_function_name (name ^ sfx) || is_udf_name (name ^ sfx))
     |> List.hd
   with
   | Some hd -> hd
