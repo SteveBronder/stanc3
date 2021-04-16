@@ -1,5 +1,5 @@
-(lang dune 2.0)
+(lang dune 2.5)
 
-(using menhir 1.1)
+(using menhir 2.0)
 
 (name stanc)
