@@ -1,6 +1,6 @@
 (** Preprocessor for handling include directives *)
 
-open Core_kernel
+open Core
 open Lexing
 module Str = Re.Str
 

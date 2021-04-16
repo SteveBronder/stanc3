@@ -1,4 +1,4 @@
-open Core_kernel
+open Core
 open Ast
 
 type t = Middle.Warnings.t

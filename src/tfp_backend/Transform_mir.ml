@@ -1,4 +1,4 @@
-open Core_kernel
+open Core
 open Middle
 
 let dist_prefix = "tfd__."

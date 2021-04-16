@@ -1,6 +1,9 @@
-open Core_kernel
+open Core
 open Common
 open Helpers
+
+let ( = ) = Stdlib.( = )
+let compare = Stdlib.compare
 
 type fun_arg_decl = (UnsizedType.autodifftype * string * UnsizedType.t) list
 [@@deriving sexp, hash, map]
@@ -12,8 +15,8 @@ type 'a fun_def =
       (UnsizedType.autodifftype * string * UnsizedType.t) list
       (* If fdbody is None, this is a function declaration without body. *)
   ; fdbody: 'a option
-  ; fdloc: Location_span.t sexp_opaque [@compare.ignore] }
-[@@deriving compare, hash, map, sexp, map, fold]
+  ; fdloc: Location_span.t [@sexp.opaque] [@compare.ignore]}
+[@@deriving compare, hash, sexp, map, fold]
 
 type io_block = Parameters | TransformedParameters | GeneratedQuantities
 [@@deriving sexp, hash]

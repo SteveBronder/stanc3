@@ -1,5 +1,6 @@
-open Core_kernel
+open Core
 open Common.Helpers
+let ( = ) = Stdlib.( = )
 
 type t =
   | UInt
@@ -10,9 +11,7 @@ type t =
   | UArray of t
   | UFun of (autodifftype * t) list * returntype
   | UMathLibraryFunction
-
 and autodifftype = DataOnly | AutoDiffable
-
 and returntype = Void | ReturnType of t [@@deriving compare, hash, sexp]
 
 let pp_autodifftype ppf = function
@@ -75,9 +74,11 @@ let rec lub_ad_type = function
       let y = lub_ad_type xs in
       if compare_autodifftype x y < 0 then y else x
 
-let check_of_same_type_mod_conv name t1 t2 =
-  if String.is_prefix name ~prefix:"assign_" then t1 = t2
-  else
+let check_of_same_type_mod_conv name (t1 : t) (t2 : t) =
+  let is_assign = String.is_prefix name ~prefix:"assign_" in 
+  match is_assign with 
+  | true -> t1 = t2
+  | false -> (
     match (t1, t2) with
     | UReal, UInt -> true
     | UFun (l1, rt1), UFun (l2, rt2) ->
@@ -89,7 +90,7 @@ let check_of_same_type_mod_conv name t1 t2 =
                 ~f:(fun (at1, ut1) (at2, ut2) ->
                   ut1 = ut2 && autodifftype_can_convert at2 at1 )
                 l1 l2)
-    | _ -> t1 = t2
+    | _ -> t1 = t2)
 
 let rec check_of_same_type_mod_array_conv name t1 t2 =
   match (t1, t2) with

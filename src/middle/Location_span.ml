@@ -1,4 +1,4 @@
-open Core_kernel
+open Core
 
 (** Delimited locations *)
 
@@ -15,7 +15,7 @@ let to_string ?printed_filename {begin_loc; end_loc} =
     | None ->
         " to "
         ^ Location.to_string
-            ~print_file:(begin_loc.filename <> end_loc.filename)
+            ~print_file:(not (String.equal begin_loc.filename end_loc.filename))
             ~print_line:(begin_loc.line_num <> end_loc.line_num)
             end_loc
     | Some _ -> ""

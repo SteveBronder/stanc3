@@ -1,4 +1,4 @@
-open Core_kernel
+open Core
 open Middle
 
 type state_t = Location_span.t list

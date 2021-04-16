@@ -1,4 +1,4 @@
-open Core_kernel
+open Core
 open Frontend
 open Stan_math_backend
 open Analysis_and_optimization

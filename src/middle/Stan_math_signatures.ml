@@ -1,5 +1,6 @@
 (** The signatures of the Stan Math library, which are used for type checking *)
-open Core_kernel
+open Core
+open Stdlib
 
 (* The "dimensionality" (bad name?) is supposed to help us represent the
     vectorized nature of many Stan functions. It allows us to represent when
@@ -38,9 +39,10 @@ let rec expand_arg = function
   | DVectors -> [UVector; UArray UVector; URowVector; UArray URowVector]
   | DDeepVectorized ->
       let all_base = [UnsizedType.UInt; UReal; URowVector; UVector; UMatrix] in
+      let map_i a i = bare_array_type (a, i) in
       List.(
         concat_map all_base ~f:(fun a ->
-            map (range 0 8) ~f:(fun i -> bare_array_type (a, i)) ))
+            map (range 0 8) ~f:map_i))
 
 type fkind = Lpmf | Lpdf | Rng | Cdf | Ccdf | UnaryVectorized
 

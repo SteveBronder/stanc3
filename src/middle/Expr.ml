@@ -2,6 +2,8 @@ open Core_kernel
 open Common
 open Helpers
 
+let ( = ) = Stdlib.( = )
+
 (** Pattern and fixed-point of MIR expressions *)
 module Fixed = struct
   module Pattern = struct
@@ -22,9 +24,9 @@ module Fixed = struct
       | Lit (Str, str) -> Fmt.pf ppf "%S" str
       | Lit (_, str) -> Fmt.string ppf str
       | FunApp (StanLib name, [lhs; rhs])
-        when Option.is_some (Operator.of_string_opt name) ->
+        when Core.Option.is_some (Operator.of_string_opt name) ->
           Fmt.pf ppf "(%a %a %a)" pp_e lhs Operator.pp
-            (Option.value_exn (Operator.of_string_opt name))
+            (Core.Option.value_exn (Operator.of_string_opt name))
             pp_e rhs
       | FunApp (fun_kind, args) ->
           Fmt.pf ppf "%a(%a)" Fun_kind.pp fun_kind
@@ -69,7 +71,7 @@ module Typed = struct
   module Meta = struct
     type t =
       { type_: UnsizedType.t
-      ; loc: Location_span.t sexp_opaque [@compare.ignore]
+      ; loc: Location_span.t [@sexp.opaque] [@compare.ignore]
       ; adlevel: UnsizedType.autodifftype }
     [@@deriving compare, create, sexp, hash]
 
@@ -92,7 +94,7 @@ module Labelled = struct
   module Meta = struct
     type t =
       { type_: UnsizedType.t
-      ; loc: Location_span.t sexp_opaque [@compare.ignore]
+      ; loc: Location_span.t [@sexp.opaque] [@compare.ignore]
       ; adlevel: UnsizedType.autodifftype
       ; label: Label.Int_label.t [@compare.ignore] }
     [@@deriving compare, create, sexp, hash]

@@ -1,6 +1,6 @@
 (** Semantic validation of AST*)
 
-open Core_kernel
+open Core
 
 val inferred_unsizedtype_of_indexed_exn :
      loc:Middle.Location_span.t

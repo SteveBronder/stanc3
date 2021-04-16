@@ -1,6 +1,6 @@
 (** The common elements of a monotone framework *)
 
-open Core_kernel
+open Core
 open Monotone_framework_sigs
 open Mir_utils
 open Middle

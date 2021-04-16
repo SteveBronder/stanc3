@@ -1,4 +1,4 @@
-open Core_kernel
+open Core
 
 (** Type errors that may arise during semantic check *)
 module TypeError = struct
