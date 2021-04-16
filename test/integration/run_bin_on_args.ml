@@ -25,8 +25,7 @@ let run_capturing_output cmd =
   String.concat ~sep:"\n" (List.concat out)
 
 let () =
-  let args = Sys.get_argv in 
-  let binary = Array.(sub args ~pos:1 ~len:1) in
+  let binary = Sys.get_argv(1) in
   let dirs = Array.(sub args ~pos:2 ~len:(length args - 2)) in
   Array.stable_sort ~compare:String.compare dirs ;
   Array.iter dirs ~f:(fun arg ->

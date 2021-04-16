@@ -1,4 +1,4 @@
-open Core
+open Core_kernel
 open Optimize
 open Middle
 open Middle.Program

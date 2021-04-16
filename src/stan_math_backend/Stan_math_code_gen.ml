@@ -16,7 +16,7 @@
     [3] Javascript pretty-printer https://github.com/Virum/compiler/blob/28e807b842bab5dcf11460c8193dd5b16674951f/JavaScript.ml#L112
 *)
 
-open Core
+open Core_kernel
 open Middle
 open Fmt
 open Expression_gen

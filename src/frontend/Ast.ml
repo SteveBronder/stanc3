@@ -1,5 +1,5 @@
 (** Abstract syntax tree *)
-open Core
+open Core_kernel
 open Stdlib
 open Middle
 

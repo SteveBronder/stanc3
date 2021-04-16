@@ -3,7 +3,7 @@
 (* Idea: check many of things related to identifiers that are hard to check
    during parsing and are in fact irrelevant for building up the parse tree *)
 
-open Core
+open Core_kernel
 open Symbol_table
 open Middle
 open Ast

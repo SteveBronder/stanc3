@@ -1,4 +1,4 @@
-open Core
+open Core_kernel
 open Middle
 open Middle.Program
 open Middle.Expr

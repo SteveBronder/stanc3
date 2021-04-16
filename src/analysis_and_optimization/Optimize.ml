@@ -1,5 +1,5 @@
 (* Code for optimization passes on the MIR *)
-open Core
+open Core_kernel
 open Common
 open Middle
 open Mir_utils

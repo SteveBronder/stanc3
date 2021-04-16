@@ -1,6 +1,6 @@
 (** Preprocessor for handling include directives *)
 
-open Core
+open Core_kernel
 
 val include_stack : Lexing.lexbuf Stack.t
 (** Stack with lexing buffers, created from all the includes encountered so

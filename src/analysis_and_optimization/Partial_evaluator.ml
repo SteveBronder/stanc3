@@ -1,6 +1,6 @@
 (* A partial evaluator for use in static analysis and optimization *)
 
-open Core
+open Core_kernel
 open Mir_utils
 open Middle
 

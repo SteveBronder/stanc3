@@ -1,4 +1,4 @@
-open Core
+open Core_kernel
 module Warnings = Middle.Warnings
 module Errors = Middle.Errors
 module Semantic_error = Middle.Semantic_error

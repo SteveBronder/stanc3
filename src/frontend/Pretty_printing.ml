@@ -2,7 +2,7 @@
 
 (* TODO: to preserve comments during pretty printing, we should capture them during parsing and attach them to AST nodes *)
 
-open Core
+open Core_kernel
 open Ast
 
 let wrap_fmt fmt x =
