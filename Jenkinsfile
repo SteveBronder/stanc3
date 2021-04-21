@@ -155,10 +155,9 @@ pipeline {
                                     text:"O=0\nCXX=${CXX}")
                             sh """
                                 cd performance-tests-cmdstan
-
                                 cd cmdstan; make -j${env.PARALLEL} build; cd ..
                                 cp ../bin/stanc cmdstan/bin/stanc
-                                ./runPerformanceTests.py -j${env.PARALLEL} --runs=0 ../test/integration/good
+                                ./runPerformanceTests.py -j7 --runs=0 ../test/integration/good
                                 ./runPerformanceTests.py -j${env.PARALLEL} --runs=0 example-models
                                 """
                         }
