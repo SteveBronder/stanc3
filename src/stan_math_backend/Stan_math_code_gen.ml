@@ -99,7 +99,7 @@ let pp_promoted_scalar ppf args =
         match args with
         | [] -> pf ppf "double"
         | hd :: tl ->
-            pf ppf "stan::promote_args_t<%a%a>" (list ~sep:comma string) hd go
+            pf ppf "stan::return_type_t<%a%a>" (list ~sep:comma string) hd go
               tl
       in
       promote_args_chunked ppf
@@ -108,7 +108,10 @@ let pp_promoted_scalar ppf args =
 (** Pretty-prints a function's return-type, taking into account templated argument
     promotion.*)
 let pp_returntype ppf arg_types rt =
-  let scalar = strf "%a" pp_promoted_scalar arg_types in
+  let scalar = 
+  match arg_types with 
+  | [] -> "auto" 
+  | _ -> strf "%a" pp_promoted_scalar arg_types in
   match rt with
   | Some ut when UnsizedType.contains_int ut ->
       pf ppf "%a@," pp_unsizedtype_custom_scalar ("int", ut)

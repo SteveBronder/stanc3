@@ -151,6 +151,9 @@ let is_fun_type = function UFun _ -> true | _ -> false
 let rec contains_int ut =
   match ut with UInt -> true | UArray ut -> contains_int ut | _ -> false
 
+let rec contains_complex ut =
+  match ut with UComplex -> true | UArray ut -> contains_complex ut | _ -> false
+
 let rec is_indexing_matrix = function
   | UArray t, _ :: idcs -> is_indexing_matrix (t, idcs)
   | UMatrix, [] -> false
