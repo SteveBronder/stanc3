@@ -69,21 +69,37 @@ let rec repeat_th n f =
 
 let wrap_int n =
   { expr= IntNumeral (Int.to_string n)
-  ; emeta= {loc= Location_span.empty; ad_level= DataOnly; type_= UInt} }
+  ; emeta=
+      { loc= Location_span.empty
+      ; ad_level= DataOnly
+      ; type_= UInt
+      ; mem_pattern= Common.Helpers.SoA } }
 
 let int_two = wrap_int 2
 
 let wrap_real r =
   { expr= RealNumeral (Float.to_string r)
-  ; emeta= {loc= Location_span.empty; ad_level= DataOnly; type_= UReal} }
+  ; emeta=
+      { loc= Location_span.empty
+      ; ad_level= DataOnly
+      ; type_= UReal
+      ; mem_pattern= Common.Helpers.SoA } }
 
 let wrap_row_vector l =
   { expr= RowVectorExpr l
-  ; emeta= {loc= Location_span.empty; ad_level= DataOnly; type_= URowVector} }
+  ; emeta=
+      { loc= Location_span.empty
+      ; ad_level= DataOnly
+      ; type_= URowVector
+      ; mem_pattern= Common.Helpers.SoA } }
 
 let wrap_vector l =
   { expr= PostfixOp (wrap_row_vector l, Transpose)
-  ; emeta= {loc= Location_span.empty; ad_level= DataOnly; type_= UVector} }
+  ; emeta=
+      { loc= Location_span.empty
+      ; ad_level= DataOnly
+      ; type_= UVector
+      ; mem_pattern= Common.Helpers.SoA } }
 
 let gen_int m t = wrap_int (gen_num_int m t)
 let gen_real m t = wrap_real (gen_num_real m t)
@@ -156,8 +172,11 @@ let gen_row_vector m n t =
       gen_ul_bounded (extract_var e1) (extract_var e2)
   | _ ->
       { expr= RowVectorExpr (repeat_th n (fun _ -> gen_real m t))
-      ; emeta= {loc= Location_span.empty; ad_level= DataOnly; type_= UMatrix}
-      }
+      ; emeta=
+          { loc= Location_span.empty
+          ; ad_level= DataOnly
+          ; type_= UMatrix
+          ; mem_pattern= Common.Helpers.SoA } }
 
 let gen_vector m n t =
   let gen_ordered n =

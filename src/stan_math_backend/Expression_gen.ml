@@ -512,8 +512,11 @@ let dummy_locate pattern =
     Fixed.
       { pattern
       ; meta=
-          Typed.Meta.{type_= UInt; adlevel= DataOnly; loc= Location_span.empty}
-      })
+          Typed.Meta.
+            { type_= UInt
+            ; adlevel= DataOnly
+            ; loc= Location_span.empty
+            ; mem_pattern= Common.Helpers.SoA } })
 
 let pp_unlocated e = strf "%a" pp_expr (dummy_locate e)
 

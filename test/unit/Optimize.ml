@@ -254,12 +254,16 @@ let%expect_test "list collapsing" =
              (((pattern
                 (NRFunApp (CompilerInternal FnPrint)
                  (((pattern (Var x))
-                   (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly)))))))
+                   (meta
+                    ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                     (mem_pattern SoA)))))))
                (meta <opaque>))
               ((pattern
                 (NRFunApp (CompilerInternal FnPrint)
                  (((pattern (Var y))
-                   (meta ((type_ UMatrix) (loc <opaque>) (adlevel AutoDiffable)))))))
+                   (meta
+                    ((type_ UMatrix) (loc <opaque>) (adlevel AutoDiffable)
+                     (mem_pattern SoA)))))))
                (meta <opaque>)))))
            (meta <opaque>))))
         (fdloc <opaque>))
@@ -273,10 +277,16 @@ let%expect_test "list collapsing" =
                  (((pattern
                     (FunApp (StanLib Pow__ FnPlain)
                      (((pattern (Var z))
-                       (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly))))
+                       (meta
+                        ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                         (mem_pattern SoA))))
                       ((pattern (Lit Int 2))
-                       (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly)))))))
-                   (meta ((type_ UReal) (loc <opaque>) (adlevel DataOnly)))))))
+                       (meta
+                        ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                         (mem_pattern SoA)))))))
+                   (meta
+                    ((type_ UReal) (loc <opaque>) (adlevel DataOnly)
+                     (mem_pattern SoA)))))))
                (meta <opaque>)))))
            (meta <opaque>))))
         (fdloc <opaque>))))
@@ -291,23 +301,31 @@ let%expect_test "list collapsing" =
            ((pattern
              (Assignment (inline_sym1__ UInt ())
               ((pattern (Lit Int 0))
-               (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly))))))
+               (meta
+                ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                 (mem_pattern SoA))))))
             (meta <opaque>))
            ((pattern
              (For (loopvar inline_sym2__)
               (lower
                ((pattern (Lit Int 1))
-                (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly)))))
+                (meta
+                 ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                  (mem_pattern SoA)))))
               (upper
                ((pattern (Lit Int 1))
-                (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly)))))
+                (meta
+                 ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                  (mem_pattern SoA)))))
               (body
                ((pattern
                  (Block
                   (((pattern
                      (NRFunApp (CompilerInternal FnPrint)
                       (((pattern (Lit Int 3))
-                        (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly)))))))
+                        (meta
+                         ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                          (mem_pattern SoA)))))))
                     (meta <opaque>))
                    ((pattern
                      (NRFunApp (CompilerInternal FnPrint)
@@ -317,26 +335,31 @@ let%expect_test "list collapsing" =
                              (FunApp (CompilerInternal FnMakeRowVec)
                               (((pattern (Lit Int 3))
                                 (meta
-                                 ((type_ UInt) (loc <opaque>) (adlevel DataOnly))))
+                                 ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                                  (mem_pattern SoA))))
                                ((pattern (Lit Int 2))
                                 (meta
-                                 ((type_ UInt) (loc <opaque>) (adlevel DataOnly)))))))
+                                 ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                                  (mem_pattern SoA)))))))
                             (meta
                              ((type_ URowVector) (loc <opaque>)
-                              (adlevel DataOnly))))
+                              (adlevel DataOnly) (mem_pattern SoA))))
                            ((pattern
                              (FunApp (CompilerInternal FnMakeRowVec)
                               (((pattern (Lit Int 4))
                                 (meta
-                                 ((type_ UInt) (loc <opaque>) (adlevel DataOnly))))
+                                 ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                                  (mem_pattern SoA))))
                                ((pattern (Lit Int 6))
                                 (meta
-                                 ((type_ UInt) (loc <opaque>) (adlevel DataOnly)))))))
+                                 ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                                  (mem_pattern SoA)))))))
                             (meta
                              ((type_ URowVector) (loc <opaque>)
-                              (adlevel DataOnly)))))))
+                              (adlevel DataOnly) (mem_pattern SoA)))))))
                         (meta
-                         ((type_ UMatrix) (loc <opaque>) (adlevel DataOnly)))))))
+                         ((type_ UMatrix) (loc <opaque>) (adlevel DataOnly)
+                          (mem_pattern SoA)))))))
                     (meta <opaque>)))))
                 (meta <opaque>)))))
             (meta <opaque>))
@@ -351,23 +374,31 @@ let%expect_test "list collapsing" =
            ((pattern
              (Assignment (inline_sym4__ UInt ())
               ((pattern (Lit Int 0))
-               (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly))))))
+               (meta
+                ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                 (mem_pattern SoA))))))
             (meta <opaque>))
            ((pattern
              (For (loopvar inline_sym5__)
               (lower
                ((pattern (Lit Int 1))
-                (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly)))))
+                (meta
+                 ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                  (mem_pattern SoA)))))
               (upper
                ((pattern (Lit Int 1))
-                (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly)))))
+                (meta
+                 ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                  (mem_pattern SoA)))))
               (body
                ((pattern
                  (Block
                   (((pattern
                      (Assignment (inline_sym4__ UInt ())
                       ((pattern (Lit Int 1))
-                       (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly))))))
+                       (meta
+                        ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                         (mem_pattern SoA))))))
                     (meta <opaque>))
                    ((pattern
                      (Assignment (inline_sym3__ UReal ())
@@ -375,11 +406,15 @@ let%expect_test "list collapsing" =
                         (FunApp (StanLib Pow__ FnPlain)
                          (((pattern (Lit Int 53))
                            (meta
-                            ((type_ UInt) (loc <opaque>) (adlevel DataOnly))))
+                            ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                             (mem_pattern SoA))))
                           ((pattern (Lit Int 2))
                            (meta
-                            ((type_ UInt) (loc <opaque>) (adlevel DataOnly)))))))
-                       (meta ((type_ UReal) (loc <opaque>) (adlevel DataOnly))))))
+                            ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                             (mem_pattern SoA)))))))
+                       (meta
+                        ((type_ UReal) (loc <opaque>) (adlevel DataOnly)
+                         (mem_pattern SoA))))))
                     (meta <opaque>))
                    ((pattern Break) (meta <opaque>)))))
                 (meta <opaque>)))))
@@ -387,14 +422,17 @@ let%expect_test "list collapsing" =
            ((pattern
              (NRFunApp (CompilerInternal FnReject)
               (((pattern (Var inline_sym3__))
-                (meta ((type_ UReal) (loc <opaque>) (adlevel AutoDiffable)))))))
+                (meta
+                 ((type_ UReal) (loc <opaque>) (adlevel AutoDiffable)
+                  (mem_pattern SoA)))))))
             (meta <opaque>)))))
         (meta <opaque>))))
      (generate_quantities
       (((pattern
          (IfElse
           ((pattern (Var emit_transformed_parameters__))
-           (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly))))
+           (meta
+            ((type_ UInt) (loc <opaque>) (adlevel DataOnly) (mem_pattern SoA))))
           ((pattern Skip) (meta <opaque>))
           (((pattern (Block ())) (meta <opaque>)))))
         (meta <opaque>))
@@ -405,11 +443,18 @@ let%expect_test "list collapsing" =
              (((pattern
                 (EOr
                  ((pattern (Var emit_transformed_parameters__))
-                  (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly))))
+                  (meta
+                   ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                    (mem_pattern SoA))))
                  ((pattern (Var emit_generated_quantities__))
-                  (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly))))))
-               (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly)))))))
-           (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly))))
+                  (meta
+                   ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                    (mem_pattern SoA))))))
+               (meta
+                ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                 (mem_pattern SoA)))))))
+           (meta
+            ((type_ UInt) (loc <opaque>) (adlevel DataOnly) (mem_pattern SoA))))
           ((pattern (Return ())) (meta <opaque>)) ()))
         (meta <opaque>))
        ((pattern
@@ -417,8 +462,11 @@ let%expect_test "list collapsing" =
           ((pattern
             (FunApp (StanLib PNot__ FnPlain)
              (((pattern (Var emit_generated_quantities__))
-               (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly)))))))
-           (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly))))
+               (meta
+                ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                 (mem_pattern SoA)))))))
+           (meta
+            ((type_ UInt) (loc <opaque>) (adlevel DataOnly) (mem_pattern SoA))))
           ((pattern (Return ())) (meta <opaque>)) ()))
         (meta <opaque>))))
      (transform_inits ()) (output_vars ()) (prog_name "") (prog_path ""))
@@ -3117,11 +3165,13 @@ let%expect_test "block fixing" =
         (((pattern
            (IfElse
             ((pattern (Lit Int 0))
-             (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly))))
+             (meta
+              ((type_ UInt) (loc <opaque>) (adlevel DataOnly) (mem_pattern SoA))))
             ((pattern
               (While
                ((pattern (Lit Int 0))
-                (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly))))
+                (meta
+                 ((type_ UInt) (loc <opaque>) (adlevel DataOnly) (mem_pattern SoA))))
                ((pattern (Block ())) (meta <opaque>))))
              (meta <opaque>))
             ()))
@@ -3134,11 +3184,18 @@ let%expect_test "block fixing" =
                (((pattern
                   (EOr
                    ((pattern (Var emit_transformed_parameters__))
-                    (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly))))
+                    (meta
+                     ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                      (mem_pattern SoA))))
                    ((pattern (Var emit_generated_quantities__))
-                    (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly))))))
-                 (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly)))))))
-             (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly))))
+                    (meta
+                     ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                      (mem_pattern SoA))))))
+                 (meta
+                  ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                   (mem_pattern SoA)))))))
+             (meta
+              ((type_ UInt) (loc <opaque>) (adlevel DataOnly) (mem_pattern SoA))))
             ((pattern (Return ())) (meta <opaque>)) ()))
           (meta <opaque>))
          ((pattern
@@ -3146,8 +3203,11 @@ let%expect_test "block fixing" =
             ((pattern
               (FunApp (StanLib PNot__ FnPlain)
                (((pattern (Var emit_generated_quantities__))
-                 (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly)))))))
-             (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly))))
+                 (meta
+                  ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                   (mem_pattern SoA)))))))
+             (meta
+              ((type_ UInt) (loc <opaque>) (adlevel DataOnly) (mem_pattern SoA))))
             ((pattern (Return ())) (meta <opaque>)) ()))
           (meta <opaque>))))
        (transform_inits ()) (output_vars ()) (prog_name "") (prog_path "")) |}]
@@ -3331,29 +3391,46 @@ let%expect_test "adlevel_optimization expressions" =
               ((pattern
                 (FunApp (StanLib Greater__ FnPlain)
                  (((pattern (Lit Int 1))
-                   (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly))))
+                   (meta
+                    ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                     (mem_pattern SoA))))
                   ((pattern (Lit Int 2))
-                   (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly)))))))
-               (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly))))
+                   (meta
+                    ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                     (mem_pattern SoA)))))))
+               (meta
+                ((type_ UInt) (loc <opaque>) (adlevel DataOnly) (mem_pattern SoA))))
               ((pattern
                 (Assignment (y UReal ())
                  ((pattern
                    (FunApp (StanLib Plus__ FnPlain)
                     (((pattern (Var y))
-                      (meta ((type_ UReal) (loc <opaque>) (adlevel AutoDiffable))))
+                      (meta
+                       ((type_ UReal) (loc <opaque>) (adlevel AutoDiffable)
+                        (mem_pattern SoA))))
                      ((pattern (Var x))
-                      (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly)))))))
-                  (meta ((type_ UReal) (loc <opaque>) (adlevel AutoDiffable))))))
+                      (meta
+                       ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                        (mem_pattern SoA)))))))
+                  (meta
+                   ((type_ UReal) (loc <opaque>) (adlevel AutoDiffable)
+                    (mem_pattern SoA))))))
                (meta <opaque>))
               (((pattern
                  (Assignment (y UReal ())
                   ((pattern
                     (FunApp (StanLib Plus__ FnPlain)
                      (((pattern (Var y))
-                       (meta ((type_ UReal) (loc <opaque>) (adlevel AutoDiffable))))
+                       (meta
+                        ((type_ UReal) (loc <opaque>) (adlevel AutoDiffable)
+                         (mem_pattern SoA))))
                       ((pattern (Var w))
-                       (meta ((type_ UReal) (loc <opaque>) (adlevel AutoDiffable)))))))
-                   (meta ((type_ UReal) (loc <opaque>) (adlevel AutoDiffable))))))
+                       (meta
+                        ((type_ UReal) (loc <opaque>) (adlevel AutoDiffable)
+                         (mem_pattern SoA)))))))
+                   (meta
+                    ((type_ UReal) (loc <opaque>) (adlevel AutoDiffable)
+                     (mem_pattern SoA))))))
                 (meta <opaque>)))))
             (meta <opaque>))
            ((pattern
@@ -3361,14 +3438,21 @@ let%expect_test "adlevel_optimization expressions" =
               ((pattern
                 (FunApp (StanLib Greater__ FnPlain)
                  (((pattern (Lit Int 2))
-                   (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly))))
+                   (meta
+                    ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                     (mem_pattern SoA))))
                   ((pattern (Lit Int 1))
-                   (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly)))))))
-               (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly))))
+                   (meta
+                    ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                     (mem_pattern SoA)))))))
+               (meta
+                ((type_ UInt) (loc <opaque>) (adlevel DataOnly) (mem_pattern SoA))))
               ((pattern
                 (Assignment (z UReal ())
                  ((pattern (Var y))
-                  (meta ((type_ UReal) (loc <opaque>) (adlevel AutoDiffable))))))
+                  (meta
+                   ((type_ UReal) (loc <opaque>) (adlevel AutoDiffable)
+                    (mem_pattern SoA))))))
                (meta <opaque>))
               ()))
             (meta <opaque>))
@@ -3377,26 +3461,37 @@ let%expect_test "adlevel_optimization expressions" =
               ((pattern
                 (FunApp (StanLib Greater__ FnPlain)
                  (((pattern (Lit Int 3))
-                   (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly))))
+                   (meta
+                    ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                     (mem_pattern SoA))))
                   ((pattern (Lit Int 1))
-                   (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly)))))))
-               (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly))))
+                   (meta
+                    ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                     (mem_pattern SoA)))))))
+               (meta
+                ((type_ UInt) (loc <opaque>) (adlevel DataOnly) (mem_pattern SoA))))
               ((pattern
                 (Assignment (z_data UReal ())
                  ((pattern (Var x))
-                  (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly))))))
+                  (meta
+                   ((type_ UInt) (loc <opaque>) (adlevel DataOnly)
+                    (mem_pattern SoA))))))
                (meta <opaque>))
               ()))
             (meta <opaque>))
            ((pattern
              (NRFunApp (CompilerInternal FnPrint)
               (((pattern (Var z))
-                (meta ((type_ UReal) (loc <opaque>) (adlevel AutoDiffable)))))))
+                (meta
+                 ((type_ UReal) (loc <opaque>) (adlevel AutoDiffable)
+                  (mem_pattern SoA)))))))
             (meta <opaque>))
            ((pattern
              (NRFunApp (CompilerInternal FnPrint)
               (((pattern (Var z_data))
-                (meta ((type_ UReal) (loc <opaque>) (adlevel DataOnly)))))))
+                (meta
+                 ((type_ UReal) (loc <opaque>) (adlevel DataOnly)
+                  (mem_pattern SoA)))))))
             (meta <opaque>)))))
         (meta <opaque>))) |}]
 

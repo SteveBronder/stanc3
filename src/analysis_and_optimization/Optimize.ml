@@ -139,7 +139,8 @@ let handle_early_returns opt_var b =
                               Expr.Typed.Meta.
                                 { type_= UInt
                                 ; adlevel= DataOnly
-                                ; loc= Location_span.empty } } )
+                                ; loc= Location_span.empty
+                                ; mem_pattern= Common.Helpers.SoA } } )
                 ; meta= Location_span.empty }
             ; Stmt.Fixed.
                 { pattern= Assignment ((name, Expr.Typed.type_of e, []), e)
@@ -169,7 +170,8 @@ let handle_early_returns opt_var b =
                             Expr.Typed.Meta.
                               { type_= UInt
                               ; adlevel= DataOnly
-                              ; loc= Location_span.empty } }
+                              ; loc= Location_span.empty
+                              ; mem_pattern= Common.Helpers.SoA } }
                     , {pattern= Break; meta= Location_span.empty}
                     , None )
               ; meta= Location_span.empty } ]
@@ -191,7 +193,8 @@ let handle_early_returns opt_var b =
                       Expr.Typed.Meta.
                         { type_= UInt
                         ; adlevel= DataOnly
-                        ; loc= Location_span.empty } } )
+                        ; loc= Location_span.empty
+                        ; mem_pattern= Common.Helpers.SoA } } )
         ; meta= Location_span.empty }
     ; Stmt.Fixed.
         { pattern=
@@ -204,12 +207,15 @@ let handle_early_returns opt_var b =
                         Expr.Typed.Meta.
                           { type_= UInt
                           ; adlevel= DataOnly
-                          ; loc= Location_span.empty } }
+                          ; loc= Location_span.empty
+                          ; mem_pattern= Common.Helpers.SoA } }
               ; upper=
                   { pattern= Lit (Int, "1")
                   ; meta=
-                      {type_= UInt; adlevel= DataOnly; loc= Location_span.empty}
-                  }
+                      { type_= UInt
+                      ; adlevel= DataOnly
+                      ; loc= Location_span.empty
+                      ; mem_pattern= Common.Helpers.SoA } }
               ; body= map_rec_stmt_loc f b }
         ; meta= Location_span.empty } ]
 
@@ -269,7 +275,8 @@ let rec inline_function_expression propto adt fim
                       Expr.Typed.Meta.
                         { type_= Type.to_unsized (Option.value_exn rt)
                         ; adlevel= adt
-                        ; loc= Location_span.empty } } )
+                        ; loc= Location_span.empty
+                        ; mem_pattern= Common.Helpers.SoA } } )
               in
               let d_list = d_list @ d_list2 in
               let s_list = s_list @ s_list2 in
@@ -560,7 +567,8 @@ let unroll_static_loops_statement _ =
                           Expr.Typed.Meta.
                             { type_= UInt
                             ; loc= Location_span.empty
-                            ; adlevel= DataOnly } } )
+                            ; adlevel= DataOnly
+                            ; mem_pattern= Common.Helpers.SoA } } )
                   (List.range ~start:`inclusive ~stop:`inclusive low up)
               in
               let stmts =

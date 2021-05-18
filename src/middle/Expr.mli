@@ -38,7 +38,8 @@ module Typed : sig
     type t =
       { type_: UnsizedType.t
       ; loc: Location_span.t sexp_opaque [@compare.ignore]
-      ; adlevel: UnsizedType.autodifftype }
+      ; adlevel: UnsizedType.autodifftype
+      ; mem_pattern: Common.Helpers.mem_pattern }
     [@@deriving compare, create, sexp, hash]
 
     include Specialized.Meta with type t := t
@@ -49,6 +50,7 @@ module Typed : sig
   val type_of : t -> UnsizedType.t
   val loc_of : t -> Location_span.t
   val adlevel_of : t -> UnsizedType.autodifftype
+  val mempattern_of : t -> Common.Helpers.mem_pattern
 end
 
 module Labelled : sig
@@ -57,6 +59,7 @@ module Labelled : sig
       { type_: UnsizedType.t
       ; loc: Location_span.t sexp_opaque [@compare.ignore]
       ; adlevel: UnsizedType.autodifftype
+      ; mem_pattern: Common.Helpers.mem_pattern
       ; label: Label.Int_label.t }
     [@@deriving compare, create, sexp, hash]
 
@@ -68,6 +71,7 @@ module Labelled : sig
   val type_of : t -> UnsizedType.t
   val loc_of : t -> Location_span.t
   val adlevel_of : t -> UnsizedType.autodifftype
+  val mempattern_of : t -> Common.Helpers.mem_pattern
   val label_of : t -> Label.Int_label.t
   val label : ?init:int -> Typed.t -> t
   val associate : ?init:t Label.Int_label.Map.t -> t -> t Label.Int_label.Map.t

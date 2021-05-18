@@ -147,10 +147,11 @@ module Labelled = struct
 
   let label ?(init = Label.Int_label.init) (stmt : Located.t) : t =
     let lbl = ref init in
-    let f Expr.Typed.Meta.({adlevel; type_; loc}) =
+    let f Expr.Typed.Meta.({adlevel; type_; loc; mem_pattern}) =
       let cur_lbl = !lbl in
       lbl := Label.Int_label.next cur_lbl ;
-      Expr.Labelled.Meta.create ~type_ ~loc ~adlevel ~label:cur_lbl ()
+      Expr.Labelled.Meta.create ~type_ ~loc ~adlevel ~label:cur_lbl
+        ~mem_pattern ()
     and g loc =
       let cur_lbl = !lbl in
       lbl := Label.Int_label.next cur_lbl ;
@@ -257,7 +258,8 @@ module Helpers = struct
   let mkfor upper bodyfn iteratee meta =
     let idx s =
       let meta =
-        Expr.Typed.Meta.create ~type_:UInt ~loc:meta ~adlevel:DataOnly ()
+        Expr.Typed.Meta.create ~type_:UInt ~loc:meta ~adlevel:DataOnly
+          ~mem_pattern:Common.Helpers.AoS ()
       in
       let expr = Expr.Fixed.{meta; pattern= Var s} in
       Index.Single expr

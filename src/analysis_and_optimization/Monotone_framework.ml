@@ -597,8 +597,10 @@ let rec used_expressions_stmt_help f
             { pattern= Var s
             ; meta=
                 Expr.Typed.Meta.
-                  {type_= UInt; adlevel= DataOnly; loc= Location_span.empty} }
-        ]
+                  { type_= UInt
+                  ; adlevel= DataOnly
+                  ; loc= Location_span.empty
+                  ; mem_pattern= Common.Helpers.SoA } } ]
   | Profile (_, l) | Block l | SList l ->
       Expr.Typed.Set.union_list
         (List.map ~f:(fun s -> used_expressions_stmt_help f s.pattern) l)

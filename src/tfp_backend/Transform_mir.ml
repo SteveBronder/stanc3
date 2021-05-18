@@ -96,8 +96,9 @@ let%expect_test "nested dist prefixes translated" =
     ((pattern
       (FunApp (StanLib tfd__.Normal (FnLpdf false))
        (((pattern (FunApp (StanLib tfd__.Normal (FnLpdf false)) ()))
-         (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly)))))))
-     (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly)))) |}]
+         (meta
+          ((type_ UInt) (loc <opaque>) (adlevel DataOnly) (mem_pattern SoA)))))))
+     (meta ((type_ UInt) (loc <opaque>) (adlevel DataOnly) (mem_pattern SoA)))) |}]
 
 (* temporary until we get rid of these from the MIR *)
 let rec remove_unused_stmts s =

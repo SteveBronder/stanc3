@@ -59,7 +59,8 @@ type untyped_expression = (located_meta, unit) expr_with
 type typed_expr_meta =
   { loc: Location_span.t sexp_opaque [@compare.ignore]
   ; ad_level: UnsizedType.autodifftype
-  ; type_: UnsizedType.t }
+  ; type_: UnsizedType.t
+  ; mem_pattern: Common.Helpers.mem_pattern }
 [@@deriving sexp, compare, map, hash, fold]
 
 type typed_expression = (typed_expr_meta, fun_kind) expr_with
@@ -68,7 +69,7 @@ type typed_expression = (typed_expr_meta, fun_kind) expr_with
 let mk_untyped_expression ~expr ~loc = {expr; emeta= {loc}}
 
 let mk_typed_expression ~expr ~loc ~type_ ~ad_level =
-  {expr; emeta= {loc; type_; ad_level}}
+  {expr; emeta= {loc; type_; ad_level; mem_pattern= Common.Helpers.SoA}}
 
 let expr_loc_lub exprs =
   match List.map ~f:(fun e -> e.emeta.loc) exprs with

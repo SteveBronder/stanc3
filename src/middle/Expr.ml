@@ -70,12 +70,13 @@ module Typed = struct
     type t =
       { type_: UnsizedType.t
       ; loc: Location_span.t sexp_opaque [@compare.ignore]
-      ; adlevel: UnsizedType.autodifftype }
+      ; adlevel: UnsizedType.autodifftype
+      ; mem_pattern: Common.Helpers.mem_pattern }
     [@@deriving compare, create, sexp, hash]
 
     let empty =
       create ~type_:UnsizedType.UInt ~adlevel:UnsizedType.DataOnly
-        ~loc:Location_span.empty ()
+        ~loc:Location_span.empty ~mem_pattern:Common.Helpers.SoA ()
 
     let pp _ _ = ()
   end
@@ -85,6 +86,7 @@ module Typed = struct
   let type_of Fixed.({meta= Meta.({type_; _}); _}) = type_
   let loc_of Fixed.({meta= Meta.({loc; _}); _}) = loc
   let adlevel_of Fixed.({meta= Meta.({adlevel; _}); _}) = adlevel
+  let mempattern_of Fixed.({meta= Meta.({mem_pattern; _}); _}) = mem_pattern
 end
 
 (** Expressions with associated location, type and label *)
@@ -94,6 +96,7 @@ module Labelled = struct
       { type_: UnsizedType.t
       ; loc: Location_span.t sexp_opaque [@compare.ignore]
       ; adlevel: UnsizedType.autodifftype
+      ; mem_pattern: Common.Helpers.mem_pattern
       ; label: Label.Int_label.t [@compare.ignore] }
     [@@deriving compare, create, sexp, hash]
 
@@ -101,7 +104,7 @@ module Labelled = struct
       create ~type_:UnsizedType.UInt ~adlevel:UnsizedType.DataOnly
         ~loc:Location_span.empty
         ~label:Label.Int_label.(prev init)
-        ()
+        ~mem_pattern:Common.Helpers.SoA ()
 
     let pp _ _ = ()
   end
@@ -111,6 +114,7 @@ module Labelled = struct
   let type_of Fixed.({meta= Meta.({type_; _}); _}) = type_
   let label_of Fixed.({meta= Meta.({label; _}); _}) = label
   let adlevel_of Fixed.({meta= Meta.({adlevel; _}); _}) = adlevel
+  let mempattern_of Fixed.({meta= Meta.({mem_pattern; _}); _}) = mem_pattern
   let loc_of Fixed.({meta= Meta.({loc; _}); _}) = loc
 
   (** Traverse a typed expression adding unique labels using locally mutable
@@ -119,10 +123,10 @@ module Labelled = struct
   let label ?(init = Label.Int_label.init) (expr : Typed.t) : t =
     let lbl = ref init in
     Fixed.map
-      (fun Typed.Meta.({adlevel; type_; loc}) ->
+      (fun Typed.Meta.({adlevel; type_; loc; mem_pattern}) ->
         let cur_lbl = !lbl in
         lbl := Label.Int_label.next cur_lbl ;
-        Meta.create ~label:cur_lbl ~adlevel ~type_ ~loc () )
+        Meta.create ~label:cur_lbl ~adlevel ~type_ ~loc ~mem_pattern () )
       expr
 
   (** Build a map from expression labels to expressions *)

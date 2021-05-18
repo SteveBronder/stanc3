@@ -99,7 +99,12 @@ let data_read smeta (decl_id, st) =
   let flat_type = UnsizedType.UArray scalar in
   let decl_var =
     { Expr.Fixed.pattern= Var decl_id
-    ; meta= Expr.Typed.Meta.{loc= smeta; type_= unsized; adlevel= DataOnly} }
+    ; meta=
+        Expr.Typed.Meta.
+          { loc= smeta
+          ; type_= unsized
+          ; adlevel= DataOnly
+          ; mem_pattern= Common.Helpers.SoA } }
   in
   let swrap stmt = {Stmt.Fixed.pattern= stmt; meta= smeta} in
   let pos_var = {Expr.Fixed.pattern= Var pos; meta= Expr.Typed.Meta.empty} in
@@ -129,8 +134,11 @@ let data_read smeta (decl_id, st) =
         , Assignment ((decl_id, flat_type, []), readfnapp decl_var) |> swrap
         , { Expr.Fixed.pattern= Var decl_id
           ; meta=
-              Expr.Typed.Meta.{loc= smeta; type_= flat_type; adlevel= DataOnly}
-          } )
+              Expr.Typed.Meta.
+                { loc= smeta
+                ; type_= flat_type
+                ; adlevel= DataOnly
+                ; mem_pattern= Common.Helpers.SoA } } )
       in
       let bodyfn var =
         let pos_increment =
@@ -208,7 +216,7 @@ let param_read smeta
         { pattern= Var decl_id
         ; meta=
             Expr.Typed.Meta.create ~loc:smeta ~type_:ut ~adlevel:AutoDiffable
-              () }
+              ~mem_pattern:Common.Helpers.SoA () }
     in
     let transform_args = transform_args out_trans in
     (*
@@ -237,7 +245,8 @@ let param_read smeta
             @ ( if out_trans = Identity then []
               else [{decl_var with pattern= Var "lp__"}] )
             @ read_constrain_dims out_trans cst ))
-          Typed.Meta.{decl_var.meta with type_= ut})
+          Typed.Meta.
+            {decl_var.meta with type_= ut; mem_pattern= Common.Helpers.SoA})
     in
     [ Stmt.Fixed.
         {pattern= Pattern.Assignment ((decl_id, ut, []), read); meta= smeta} ]

@@ -48,7 +48,9 @@ let rec op_to_funapp op args =
   Expr.
     { Fixed.pattern=
         FunApp (StanLib (Operator.to_string op, FnPlain), trans_exprs args)
-    ; meta= Expr.Typed.Meta.create ~type_ ~adlevel ~loc () }
+    ; meta=
+        Expr.Typed.Meta.create ~type_ ~adlevel ~loc
+          ~mem_pattern:Common.Helpers.SoA () }
 
 and trans_expr {Ast.expr; Ast.emeta} =
   let ewrap pattern =
@@ -56,8 +58,10 @@ and trans_expr {Ast.expr; Ast.emeta} =
       { Fixed.pattern
       ; meta=
           Typed.Meta.
-            {type_= emeta.Ast.type_; adlevel= emeta.ad_level; loc= emeta.loc}
-      }
+            { type_= emeta.Ast.type_
+            ; adlevel= emeta.ad_level
+            ; loc= emeta.loc
+            ; mem_pattern= emeta.mem_pattern } }
   in
   match expr with
   | Ast.Paren x -> trans_expr x
@@ -104,8 +108,11 @@ let neg_inf =
   Expr.
     { Fixed.pattern= FunApp (CompilerInternal FnNegInf, [])
     ; meta=
-        Typed.Meta.{type_= UReal; loc= Location_span.empty; adlevel= DataOnly}
-    }
+        Typed.Meta.
+          { type_= UReal
+          ; loc= Location_span.empty
+          ; adlevel= DataOnly
+          ; mem_pattern= Common.Helpers.SoA } }
 
 let trans_arg (adtype, ut, ident) = (adtype, ident.Ast.name, ut)
 
@@ -182,7 +189,9 @@ let unquote s =
 let mkstring loc s =
   Expr.
     { Fixed.pattern= Lit (Str, s)
-    ; meta= Typed.Meta.create ~type_:UReal ~loc ~adlevel:DataOnly () }
+    ; meta=
+        Typed.Meta.create ~type_:UReal ~loc ~adlevel:DataOnly
+          ~mem_pattern:Common.Helpers.SoA () }
 
 let trans_printables mloc (ps : Ast.typed_expression Ast.printable list) =
   List.map
@@ -460,7 +469,7 @@ let trans_decl {dconstrain; dadlevel} smeta decl_type transform identifier
       ; meta=
           Typed.Meta.create ~adlevel:dadlevel ~loc:smeta
             ~type_:(Type.to_unsized decl_type)
-            () }
+            ~mem_pattern:Common.Helpers.SoA () }
   in
   let decl =
     Stmt.
@@ -531,12 +540,14 @@ let rec trans_stmt ud_dists (declc : decl_context) (ts : Ast.typed_statement) =
                     ; emeta=
                         { Ast.loc= Location_span.empty
                         ; ad_level= id_ad_level
-                        ; type_= id_type_ } }
+                        ; type_= id_type_
+                        ; mem_pattern= Common.Helpers.SoA } }
                   , assign_indices ) )
         ; emeta=
             { Ast.loc= assign_lhs.lmeta.loc
             ; ad_level= lhs_ad_level
-            ; type_= lhs_type_ } }
+            ; type_= lhs_type_
+            ; mem_pattern= Common.Helpers.SoA } }
       in
       let rhs =
         match assign_op with
@@ -573,7 +584,7 @@ let rec trans_stmt ud_dists (declc : decl_context) (ts : Ast.typed_statement) =
             ; meta=
                 Typed.Meta.create ~type_:UReal ~loc:mloc
                   ~adlevel:(Ast.expr_ad_lub (arg :: args))
-                  () }
+                  ~mem_pattern:Common.Helpers.SoA () }
       in
       truncate_dist ud_dists distribution arg args truncation @ swrap add_dist
   | Ast.Print ps ->
@@ -709,7 +720,8 @@ let trans_sizedtype_decl declc tr name =
                 Typed.Meta.
                   { type_= s.Ast.emeta.Ast.type_
                   ; adlevel= s.emeta.ad_level
-                  ; loc= s.emeta.loc } }
+                  ; loc= s.emeta.loc
+                  ; mem_pattern= Common.Helpers.SoA } }
         in
         ([decl; assign; check fn s var], var)
   in
@@ -777,7 +789,7 @@ let trans_block ud_dists declc block prog =
             ; meta=
                 Typed.Meta.create ~adlevel:declc.dadlevel ~loc:smeta.Ast.loc
                   ~type_:(SizedType.to_unsized type_)
-                  () }
+                  ~mem_pattern:Common.Helpers.SoA () }
         in
         let decl =
           Stmt.
