@@ -143,6 +143,21 @@ let is_int_type = function UInt | UArray UInt -> true | _ -> false
 let is_eigen_type ut =
   match ut with UVector | URowVector | UMatrix -> true | _ -> false
 
+let rec any_not_eigen_type st =
+  match st with
+  | UReal | UInt -> true
+  | UVector | URowVector | UMatrix | UMathLibraryFunction | UFun (_, Void, _, _)
+    ->
+      false
+  | UArray inner_type | UFun (_, ReturnType inner_type, _, _) ->
+      any_not_eigen_type inner_type
+
+let rec contains_eigen_type ut =
+  match ut with
+  | UVector | URowVector | UMatrix -> true
+  | UArray t -> contains_eigen_type t
+  | _ -> false
+
 let is_fun_type = function UFun _ -> true | _ -> false
 
 (** Detect if type contains an integer *)

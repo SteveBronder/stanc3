@@ -1126,16 +1126,18 @@ let gen_aos_variables
     (flowgraph_to_mir : (int, Stmt.Located.Non_recursive.t) Map.Poly.t)
     (l : int) (aos_variables : string Set.Poly.t) =
   let mir_node mir_idx = Map.find_exn flowgraph_to_mir mir_idx in
-  let _, _, split_flowgraph = Map.split flowgraph_to_mir l in
-  match (mir_node l).pattern with
-  | Decl {decl_id; decl_type= Type.Sized _; _} -> (
-      let query_stmt stmt =
-        Mir_utils.query_aos_stmts decl_id aos_variables flowgraph_to_mir stmt
-      in
-      match Map.exists ~f:query_stmt split_flowgraph with
-      | true -> Set.Poly.singleton decl_id
-      | false -> Set.Poly.empty )
-  | _ -> Set.Poly.empty
+  Mem_pattern.query_aos_stmts aos_variables flowgraph_to_mir (mir_node l)
+
+let transform_logprob (mir : Program.Typed.t)
+    (transform : Stmt.Located.t -> Stmt.Located.t) : Program.Typed.t =
+  let transform' s =
+    match transform {pattern= SList s; meta= Location_span.empty} with
+    | {pattern= SList l; _} -> l
+    | _ ->
+        raise
+          (Failure "Something went wrong with program transformation packing!")
+  in
+  {mir with log_prob= transform' mir.log_prob}
 
 (**
   * Deduces whether types can be Structures of Arrays (SoA/fast) or Arrays of Structs (AoS/slow)
@@ -1146,13 +1148,25 @@ let gen_aos_variables
   * @param 
   *)
 let optimize_soa (mir : Program.Typed.t) =
-  let transform _ stmt =
-    optimize_mem_pattern ~gen_variables:gen_aos_variables
-      ~update_expr:Mir_utils.modify_soa_exprs
-      ~update_stmt:Mir_utils.mod_soa_stmt_pattern
-      ~initial_variables:Set.Poly.empty stmt
+  let global_initial_ad_variables =
+    Set.Poly.of_list
+      (List.filter_map
+         ~f:(fun (v, Program.({out_block; _})) ->
+           match out_block with
+           | Parameters | TransformedParameters -> Some v
+           | _ -> None )
+         mir.output_vars)
   in
-  transform_program_blockwise mir transform
+  let transform stmt =
+    optimize_mem_pattern ~gen_variables:gen_aos_variables
+      ~update_expr:Mem_pattern.modify_soa_exprs
+      ~update_stmt:Mem_pattern.mod_soa_stmt_pattern
+      ~initial_variables:global_initial_ad_variables stmt
+    (*
+      ~initial_variables:Set.Poly.empty stmt
+      *)
+  in
+  transform_logprob mir transform
 
 let optimize_ad_levels (mir : Program.Typed.t) =
   let gen_ad_variables

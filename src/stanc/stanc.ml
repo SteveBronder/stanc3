@@ -220,7 +220,7 @@ let use_file filename =
       Sexp.pp_hum Format.std_formatter
         [%sexp (tx_mir : Middle.Program.Typed.t)] ;
     if !dump_tx_mir_pretty then Program.Typed.pp Format.std_formatter tx_mir ;
-    let opt_mir =
+    let opt_mir_orig =
       if !optimize then (
         let opt = Optimize.optimization_suite tx_mir in
         if !dump_opt_mir then
@@ -230,6 +230,7 @@ let use_file filename =
         opt )
       else tx_mir
     in
+    let opt_mir = Optimize.optimize_soa opt_mir_orig in
     let cpp = Fmt.strf "%a" Stan_math_code_gen.pp_prog opt_mir in
     Out_channel.write_all !output_file ~data:cpp ;
     if !print_model_cpp then print_endline cpp )

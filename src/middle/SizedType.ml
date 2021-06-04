@@ -62,13 +62,13 @@ let rec contains_soa st =
   | SVector (AoS, _) | SRowVector (AoS, _) | SMatrix (AoS, _, _) -> false
   | SArray (t, _) -> contains_soa t
 
-let rec get_soa st =
+let rec get_mem_pattern st =
   match st with
   | SInt -> Common.Helpers.AoS
   | SReal -> AoS
   | SVector (SoA, _) | SRowVector (SoA, _) | SMatrix (SoA, _, _) -> SoA
   | SVector (AoS, _) | SRowVector (AoS, _) | SMatrix (AoS, _, _) -> AoS
-  | SArray (t, _) -> get_soa t
+  | SArray (t, _) -> get_mem_pattern t
 
 let rec dims_of st =
   match st with
@@ -83,6 +83,12 @@ let rec get_dims st =
   | SVector (_, dim) | SRowVector (_, dim) -> [dim]
   | SMatrix (_, dim1, dim2) -> [dim1; dim2]
   | SArray (t, dim) -> dim :: get_dims t
+
+let rec any_not_eigen_type st =
+  match st with
+  | SReal | SInt -> true
+  | SVector _ | SRowVector _ | SMatrix _ -> false
+  | SArray (inner_type, _) -> any_not_eigen_type inner_type
 
 let%expect_test "dims" =
   let open Fmt in

@@ -130,7 +130,10 @@ class simple_function_model final : public model_base_crtp<simple_function_model
       current_statement__ = 26;
       sum_y = std::numeric_limits<double>::quiet_NaN();
       
+      current_statement__ = 28;
       {
+        profile<local_scalar_t__> profile__("sum", const_cast<profile_map&>(profiles__));
+        
         current_statement__ = 27;
         sum_y = sum(y);
       }
@@ -164,17 +167,17 @@ class simple_function_model final : public model_base_crtp<simple_function_model
       local_scalar_t__ rho = DUMMY_VAR__;
       
       current_statement__ = 1;
-      rho = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(0,
-              lp__);
+      rho = in__.template read_constrain_lb<stan::conditional_var_value_t<local_scalar_t__, local_scalar_t__>, jacobian__>(
+              0, lp__);
       local_scalar_t__ alpha = DUMMY_VAR__;
       
       current_statement__ = 2;
-      alpha = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
+      alpha = in__.template read_constrain_lb<stan::conditional_var_value_t<local_scalar_t__, local_scalar_t__>, jacobian__>(
                 0, lp__);
       local_scalar_t__ sigma = DUMMY_VAR__;
       
       current_statement__ = 3;
-      sigma = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
+      sigma = in__.template read_constrain_lb<stan::conditional_var_value_t<local_scalar_t__, local_scalar_t__>, jacobian__>(
                 0, lp__);
       {
         current_statement__ = 4;
@@ -189,9 +192,8 @@ class simple_function_model final : public model_base_crtp<simple_function_model
         validate_non_negative_index("L_cov", "N", N);
         current_statement__ = 8;
         validate_non_negative_index("L_cov", "N", N);
-        stan::conditional_var_value_t<local_scalar_t__, Eigen::Matrix<local_scalar_t__, -1, -1>> L_cov = 
-        stan::conditional_var_value_t<local_scalar_t__, Eigen::Matrix<local_scalar_t__, -1, -1>>(Eigen::Matrix<double, -1, -1>::Constant(N, N, std::numeric_limits<double>::quiet_NaN()));
-        
+        Eigen::Matrix<local_scalar_t__, -1, -1> L_cov = Eigen::Matrix<local_scalar_t__, -1, -1>::Constant(N, N, DUMMY_VAR__);
+                                                        
         
         {
           current_statement__ = 10;

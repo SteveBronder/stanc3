@@ -576,10 +576,10 @@ let semantic_check_variable cf loc id =
                 ( (cf.in_fun_def && (cf.in_udf_dist_def || cf.in_lp_fun_def))
                 || cf.current_block = Model ) ->
         Semantic_error.invalid_unnormalized_fn loc |> error
-    | Some (originblock, UFun (args, rt, FnLpdf _, support_soa)) ->
+    | Some (originblock, UFun (args, rt, FnLpdf _, mem_pattern)) ->
         let type_ =
           UnsizedType.UFun
-            (args, rt, Fun_kind.suffix_from_name id.name, support_soa)
+            (args, rt, Fun_kind.suffix_from_name id.name, mem_pattern)
         in
         mk_typed_expression ~expr:(Variable id)
           ~ad_level:(calculate_autodifftype cf originblock type_)
