@@ -1071,10 +1071,28 @@ let optimize_ad_levels (mir : Program.Typed.t) =
   in
   transform_program_blockwise mir transform
 
+let optimize_loops (mir : Program.Typed.t) =
+  let get_top_lvl_sizes sub_mir =
+    List.filter_map ~f:For_collapser.get_decl_dims sub_mir
+  in
+  let sizes1 = get_top_lvl_sizes mir.prepare_data in
+  let sizes2 = List.concat [sizes1; get_top_lvl_sizes mir.log_prob] in
+  let sizes3 = List.concat [sizes2; get_top_lvl_sizes mir.transform_inits] in
+  let sizes4 =
+    List.concat [sizes3; get_top_lvl_sizes mir.generate_quantities]
+  in
+  { mir with
+    prepare_data= For_collapser.collapse_loops sizes1 mir.prepare_data
+  ; transform_inits= For_collapser.collapse_loops sizes2 mir.transform_inits
+  ; log_prob= For_collapser.collapse_loops sizes3 mir.log_prob
+  ; generate_quantities=
+      For_collapser.collapse_loops sizes4 mir.generate_quantities }
+
 (* Apparently you need to completely copy/paste type definitions between
    ml and mli files?*)
 type optimization_settings =
   { function_inlining: bool
+  ; loop_collapsing: bool
   ; static_loop_unrolling: bool
   ; one_step_loop_unrolling: bool
   ; list_collapsing: bool
@@ -1090,6 +1108,7 @@ type optimization_settings =
 let settings_const b =
   { function_inlining= b
   ; static_loop_unrolling= b
+  ; loop_collapsing= b
   ; one_step_loop_unrolling= b
   ; list_collapsing= b
   ; block_fixing= b
@@ -1120,6 +1139,7 @@ let optimization_suite ?(settings = all_optimizations) mir =
     ; (constant_propagation, settings.constant_propagation)
       (* Book: Dead-code elimination *)
     ; (dead_code_elimination, settings.dead_code_elimination)
+    ; (optimize_loops, settings.loop_collapsing)
       (* Matthijs: Before lazy code motion to get loop-invariant code motion *)
     ; (one_step_loop_unrolling, settings.one_step_loop_unrolling)
       (* Matthjis: expression_propagation < partial_evaluation *)

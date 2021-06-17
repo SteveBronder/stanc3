@@ -54,10 +54,16 @@ val optimize_ad_levels : Program.Typed.t -> Program.Typed.t
     variables only ever get treated as autodiff variables if they have some
     dependency on a parameter *)
 
+val optimize_loops : Program.Typed.t -> Program.Typed.t
+(** Assign the optimal ad-levels to local variables. That means, make sure that
+    variables only ever get treated as autodiff variables if they have some
+    dependency on a parameter *)
+
 (** Interface for turning individual optimizations on/off. Useful for testing
     and for top-level interface flags. *)
 type optimization_settings =
   { function_inlining: bool
+  ; loop_collapsing: bool
   ; static_loop_unrolling: bool
   ; one_step_loop_unrolling: bool
   ; list_collapsing: bool

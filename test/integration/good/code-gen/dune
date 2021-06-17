@@ -32,6 +32,17 @@
  (action (diff transformed_mir.expected transformed_mir.output)))
 
 (rule
+ (targets loop_collapsing.output)
+ (deps (package stanc) (:stanfiles loop_collapsing.stan))
+ (action
+  (with-stdout-to %{targets}
+   (run %{bin:run_bin_on_args} "%{bin:stanc} --debug-transformed-mir" %{stanfiles}))))
+
+(alias
+ (name runtest)
+ (action (diff loop_collapsing.expected loop_collapsing.output)))
+
+(rule
  (targets cl.output)
  (deps (package stanc) (:stanfiles  optimize_glm.stan))
  (action
